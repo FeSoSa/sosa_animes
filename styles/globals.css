@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+
+@media (min-width: 1024px) {
+  @keyframes banner {
+    from {
+      background-position-x: 0px;
+      background-size: 105%;
+    }
+
+    50% {
+      background-position-x: 30px;
+      background-size: 115%;
+    }
+
+    to {
+      background-position-x: 0px;
+      background-size: 105%;
+    }
+  }
+
+  #banner {
+    animation: banner 30s ease-in-out infinite;
+  }
+}
+
+  @keyframes desc{
+    0%,10%{transform: translateY(0);}
+    75%,90%{transform:translateY(-35%);}
+    100%{transform: translateY(0)}
+}
+
+body {
+  color: white;
+  overflow-x: hidden;
+  font-family: 'Roboto', sans-serif;
+}
+
+.bg-principal {
+  height: 100%;
+  background:
+    linear-gradient(#4C0788 30%, #20033A, #4C0788);
+
+  background-size: contain;
+  background-position: center;
+  background-repeat: repeat-y;
+
+}
+
+.gradient-v {
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to top, #4C0788 5%, transparent 10%);
+}
+
+.gradient-h {
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to right, #4C0788 1%, transparent 60%);
+}
+
+.scroll-gradient{
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to bottom, black 3%, transparent);
+  opacity: 75%;
+}
+
+.nav-gradient{
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to right, black 10%, transparent);
+}
+
+.Arrow{
+  position: absolute;
+  z-index: 40;
+  display: flex;
+  opacity: 0;
+  justify-content: center;
+  vertical-align: middle;
+  align-items: center;
+  margin-top: 14px;
+  height:165px;
+}
+.rotate-favorite{
+  transform: rotate(0);
+}
+.rotate-favorite:hover{
+  transform: rotate(360deg);
+}
+
+.AnimeRow:hover{
+  .Arrow{
+    opacity: 1;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: #20033A
+}
+
+::-webkit-scrollbar-thumb {
+  background: #FFA400;
+}
