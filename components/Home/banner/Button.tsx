@@ -6,14 +6,22 @@ interface Props {
     text: string,
 }
 
-export default function Button({ children, color, text}: Props) {
+export default function Button({ children, color, text }: Props) {
     return (
         <button
-            className={`bg-${color} text-${text} rounded mr-5 text-white font-bold hover:bg-opacity-75`}
+            className={`
+            bg-${color} 
+            text-${text} 
+            rounded 
+            p-2
+            w-[8rem] 
+            font-bold
+            border-black
+            border-2
+            hover:border-white
+            `}
         >
-            <p className={`transiton-all p-2 pl-5 pr-5  duration-500 `} >
-                {children}
-            </p>
+            {children}
         </button>
     )
 }

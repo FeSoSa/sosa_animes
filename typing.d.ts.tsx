@@ -33,12 +33,14 @@ export interface IComponent{
 export interface IContext{
     selectedAnime: IAnimes | undefined;
     setSelectedAnime: Dispatch<SetStateAction<IAnimes | undefined>> 
-    navOpen:boolean;
-    setNavOpen:Dispatch<SetStateAction<boolean>>;
+    navToggle:boolean;
+    setNavToggle:Dispatch<SetStateAction<boolean>>;
     navBlack:boolean
     setNavBlack:Dispatch<SetStateAction<boolean>>;
     favorite:Array<IAnimes>,
     setFavorite:Dispatch<SetStateAction<IAnimes[]>>
+    openModal:boolean,
+    setOpenModal:Dispatch<SetStateAction<boolean>>
 }
 
 export interface IVideo {

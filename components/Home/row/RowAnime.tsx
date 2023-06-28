@@ -72,7 +72,8 @@ export default function RowAnime({ items, title }: Props) {
                     border-transparent
                     hover:scale-100 
                     hover:z-30
-                    hover:border-white
+                    hover:border-yellow
+                    cursor-pointer
                     "
                         key={i.id}
                         src={`${poster}${i.poster_path}`} alt={i.name || i.title}

@@ -18,8 +18,8 @@ export default function FavoriteButton({ added, addToList}: Props) {
         >
             <div className={`flex justify-center transiton-all duration-500 rotate-favorite`} >
                 {added
-                    ? <AiOutlineCheck style={{ color: '#000', fontSize: 25 }} />
-                    : <AiOutlinePlus style={{ color: '#000', fontSize: 25 }} />
+                    ? <AiOutlineCheck className="text-green text-[25px]"/>
+                    : <AiOutlinePlus  className="text-black text-[25px]" />
                 }
             </div>
         </button>

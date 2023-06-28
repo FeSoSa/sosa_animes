@@ -1,45 +1,107 @@
-import Image from "next/image";
-import React, { useContext } from "react";
-import Logo from '../../public/assets/AnimeLogo.png'
-import Links from "../Home/banner/Links";
+import React, { useContext, useEffect, useRef } from "react";
 import { Context } from "../../contexts/ContextProvider";
+import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
+import { motion } from 'framer-motion';
 import Link from "next/link";
+import Image from "next/image";
 
-import {TbMovie} from 'react-icons/tb'
-import {HiMagnifyingGlassCircle} from 'react-icons/hi2'
-import {IoTvSharp} from 'react-icons/io5'
+import Logo from '../../public/assets/AnimeLogo.png'
+import Button from "../Home/banner/Button";
 
-export default function Nav() {
+export default function OpenNav() {
 
-  const { navOpen, setNavOpen } = useContext(Context)
+    const { setNavToggle, navToggle, navBlack, setNavBlack } = useContext(Context)
+    const menuRef = useRef<HTMLDivElement>(null);
 
-  return (
-    <header
-      className={`fixed top-0 sm:min-h-screen sm:min-w-[16rem] bg-black p-5
-        transition-all delay-50 duration-500 bg-opacity-50 z-[45] border-r-2 border-yellow
-        translate-x-[-16rem] ${navOpen && 'translate-x-[0]'}
-      `}
-      onMouseOver={() => setNavOpen(true)}
-      onMouseOut={() => setNavOpen(false)}
-      style={{ display: "flex", alignItems: 'center', flexDirection: "column" }}
-    >
+    const style = {
+        display: 'flex',
+        fontSize: '2rem',
+        color: 'white',
+    }
 
-      <nav>
-        <div className="pb-10 ml-10">
-          <Image src={Logo} alt="Imagem SoSaAnime" width={75} height={75} />
-        </div>
-        <div >
-          <Links Icon={HiMagnifyingGlassCircle}>Procurar</Links>
-          <Links Icon={IoTvSharp}>Categorias</Links>
-          <Links Icon={TbMovie}>Filmes</Links>
-          <Links>Entre em contato</Links>
-        </div>
-      </nav>
-        <Link target="_blank" href={"https://portfolio-fb.vercel.app"} 
-        className="absolute bottom-0 m-5 p-1 inline-block font-bold border-2 
-        border-transparent text-green bg-white rounded hover:border-yellow cursor-pointer transition-all duration-200 hover:scale-110">
-          FeSoSa
-        </Link>
-    </header>
-  )
+    useEffect(() => {
+
+        const scrollListener = () => {
+            if (window.scrollY > 400) {
+                setNavBlack(true)
+            } else {
+                setNavBlack(false)
+            }
+        }
+
+        window.addEventListener('scroll', scrollListener)
+
+        return () => {
+            window.removeEventListener('scroll', scrollListener)
+        }
+
+    }, [setNavBlack])
+
+    const NavClick = () => {
+        setNavToggle(!navToggle)
+    }
+
+
+    return (
+        <>
+            <motion.nav
+                className="flex w-[15rem] h-full fixed z-50"
+                initial={{ x: '-100%' }}
+                animate={{ x: navToggle ? 0 : '-100%' }}
+                transition={{ duration: 0.5 }}
+            >
+                <div
+                    className={`
+                    flex 
+                    items-center
+                    text-center 
+                    flex-col 
+                    w-[20rem] 
+                    h-[100vh] 
+                    bg-black
+                    border-r-2
+                    border-yellow
+                    bg-opacity-75`}
+                >
+                    <Image className="m-2 mb-5" src={Logo} alt="Logo" width={75} height={75} />
+                    <ul className="flex flex-col mt-2 gap-10">
+
+                        <Link href="/">
+                            <Button color="yellow" text="white">Procurar</Button>
+                        </Link>
+                        <Link href="/">
+                            <Button color="yellow" text="white">Favoritos</Button>
+                        </Link>
+                        <Link href="/filmes">
+                            <Button color="yellow" text="white">Categorias</Button>
+                        </Link>
+                        <Link href="/series">
+                            <Button color="yellow" text="white">Filmes</Button>
+                        </Link>
+                        <Link href="/documentarios">
+                            <Button color="yellow" text="white">Contato</Button>
+                        </Link>
+
+                    </ul>
+
+                    <Link 
+                        className="mb-5 rounded-md text-black bg-white shadow p-2 shadow-black absolute bottom-0 mb-1 font-bold cursor-pointer border-2 border-black hover:border-green" 
+                        target="_blank" href={"https://portfolio-fb.vercel.app"}>
+                        <p>
+                            FeSOSA
+                        </p>
+                    </Link>
+                </div>
+            </motion.nav>
+
+            <button
+                className={`flex fixed w-[2rem] m-[1rem] h-[2rem] bg-yellow z-50 
+               rounded ${navBlack && 'nav-gradient'} ${navToggle && 'bg-dark_gray'} hover:bg-opacity-75`}
+                onClick={() => { NavClick() }}>
+                <div className={`transition-all  duration-500  ${navToggle && '-rotate-180'}`}>
+                    <MdOutlineKeyboardDoubleArrowRight style={style} />
+                </div>
+            </button>
+        </>
+    )
 }

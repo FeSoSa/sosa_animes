@@ -5,6 +5,7 @@ import { IAnimes, IComponent } from "../typing.d.ts";
 import { GetServerSideProps } from "next";
 import MainContainer from "../components/Home/MainContainer";
 import Head from "next/head";
+import Cookies from "universal-cookie";
 
 interface Props{
     PopularAnime:IAnimes[],
@@ -25,6 +26,11 @@ const Home = ({
     MisteryAnime,
     MovieAnime
 }:Props) => {
+
+    const cookies = new Cookies();
+    cookies.set('Modal','', {secure: true, sameSite: 'none'});
+    cookies.set('Modal','', {secure: true, sameSite: 'lax'});
+
 
     const Animes:IComponent[] = [
         [PopularAnime,"Em destaque"],

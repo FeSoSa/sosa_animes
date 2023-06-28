@@ -6,6 +6,8 @@ import Button from "./Button";
 import { Context } from "../../../contexts/ContextProvider";
 import FavoriteButton from "./FavoriteButton";
 import addToList from "../../../utils/addToList";
+import ModalButton from "./ModalButton";
+import Modal from "./Modal";
 
 interface Props {
     Anime: IAnimes
@@ -19,8 +21,12 @@ export default function BannerInfo({ Anime }: Props) {
         <section>
             <div style={{ height: 120, padding: 45 }}>
                 {Anime?.name?.length < 35 || Anime?.title?.length < 35
-                    ? <h2 style={{ fontSize: 40, width: 650, paddingTop: 25, fontWeight: 'bold' }}>{Anime.name}</h2> || <h2 style={{ fontSize: 40, width: 650 }}>{Anime.title}</h2>
-                    : <h2 style={{ fontSize: 40, width: 650, fontWeight: 'bold' }}>{Anime.name.slice(0, 60)}</h2> || <h2 style={{ fontSize: 40, width: 650 }}>{Anime.title.slice(0, 60)}</h2>
+                    ? Anime?.name == null || undefined
+                        ? <h2 style={{ fontSize: 40, width: 650, paddingTop: 25, fontWeight: 'bold' }}>{Anime?.title}</h2>
+                        : <h2 style={{ fontSize: 40, width: 650, paddingTop: 25, fontWeight: 'bold' }}>{Anime?.name}</h2>
+                    : Anime?.name == null || undefined
+                        ? <h2 style={{ fontSize: 40, width: 650, fontWeight: 'bold' }}>{Anime?.title?.slice(0, 60)}</h2>
+                        : <h2 style={{ fontSize: 40, width: 650, fontWeight: 'bold' }}>{Anime?.name?.slice(0, 60)}</h2>
                 }
             </div>
 
@@ -34,9 +40,9 @@ export default function BannerInfo({ Anime }: Props) {
                         : Anime.overview
                     }
                 </div>
-                <div className="flex">
+                <div className="flex gap-5">
                     <div>
-                        <Button color='yellow' text='white'>Ver Trailer</Button>
+                        <ModalButton TrailerID={Anime.id} color='yellow' text='white'>Ver Trailer</ModalButton>
                     </div>
                     <div>
                         <Button color='black' text="white">Detalhes</Button>
@@ -49,6 +55,7 @@ export default function BannerInfo({ Anime }: Props) {
                     </div>
                 </div>
             </div>
+            <Modal ID={Anime.id} type={Anime.title} name={Anime.title || Anime.name}/>
         </section>
     )
 }
