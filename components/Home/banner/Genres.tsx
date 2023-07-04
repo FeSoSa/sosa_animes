@@ -3,11 +3,10 @@ import { movieGenres, tvGenres } from "../../../constants/genres";
 
 interface Props {
     genres: number[],
-    mediaType: string | undefined
+    mediaType: 'tv' | 'movie'
 }
 
 export default function Genres({ genres, mediaType }: Props) {
-
     return (
         <>
             {genres && genres.length > 0 && (

@@ -1,3 +1,4 @@
+import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
@@ -15,6 +16,12 @@ interface ApiVariables {
     still_sizes: string[];
   };
 }
+
+export const getSecret = async () => {
+  const fetch = axios.create({ baseURL: "/" });
+  const { data } = await fetch("api/requestSecret");
+  return data;
+};
 
 const apiVariables: ApiVariables = {
   base: {

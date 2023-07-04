@@ -1,6 +1,4 @@
-import genres from "./genres"
-
-const API_KEY = process.env.IMDB_KEY
+const API_KEY = process.env.NEXT_KEY
 const API_BASE = 'https://api.themoviedb.org/3/'
 const PROVIDERS = '&watch_region=BR&with_watch_providers=283|1796|619|384'
 const NETWORKS = '&with_networks=1175|614|1112|159|98|1521|1|94|160|201|861|173'

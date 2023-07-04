@@ -8,6 +8,7 @@ import FavoriteButton from "./FavoriteButton";
 import addToList from "../../../utils/addToList";
 import ModalButton from "./ModalButton";
 import Modal from "./Modal";
+import DetailButton from "./DetailButton";
 
 interface Props {
     Anime: IAnimes
@@ -45,7 +46,7 @@ export default function BannerInfo({ Anime }: Props) {
                         <ModalButton TrailerID={Anime.id} color='yellow' text='white'>Ver Trailer</ModalButton>
                     </div>
                     <div>
-                        <Button color='black' text="white">Detalhes</Button>
+                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">Detalhes</DetailButton>
                     </div>
                     <div>
                         <FavoriteButton

@@ -1,3 +1,5 @@
+'server-side'
+
 import dotenv from 'dotenv';
 dotenv.config();
 import axios, { AxiosResponse } from "axios";
@@ -6,7 +8,7 @@ import apiVariables from "./apiVariables";
 
 export const getTrailers = async (id: number, type: string) => {
   const BASE_URL = apiVariables.base.base_url;
-  const KEY = '8eb4beae0e4519895e694646c91248c2'
+  const KEY = process.env.NEXT_KEY
 
 
   if (id < 1) {

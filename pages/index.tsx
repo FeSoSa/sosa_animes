@@ -27,11 +27,6 @@ const Home = ({
     MovieAnime
 }:Props) => {
 
-    const cookies = new Cookies();
-    cookies.set('Modal','', {secure: true, sameSite: 'none'});
-    cookies.set('Modal','', {secure: true, sameSite: 'lax'});
-
-
     const Animes:IComponent[] = [
         [PopularAnime,"Em destaque"],
         [ActionAnime,"Ação e Aventura"],
