@@ -5,6 +5,7 @@ import apiVariables from "../../../utils/apiVariables";
 import { Context } from "../../../contexts/ContextProvider";
 
 import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
+import { useRouter } from "next/router.js";
 
 interface Props {
     items: IAnimes[],
@@ -18,6 +19,7 @@ export default function RowAnime({ items, title }: Props) {
     const base_url = apiVariables.images.base_url
     const size = apiVariables.images.poster_sizes
     const poster = `${base_url}${size[3]}`;
+    const router = useRouter()
 
     const setSelectedAnimeCall = useCallback(
         (i: IAnimes) => {
@@ -78,6 +80,7 @@ export default function RowAnime({ items, title }: Props) {
                         key={i.id}
                         src={`${poster}${i.poster_path}`} alt={i.name || i.title}
                         onMouseEnter={() => setSelectedAnimeCall(i)}
+                        onClick={() => router.push(`/${i.name? 'tv' : 'movie'}/details/${i.id}`)}
                     />
                 )}
                 </div>

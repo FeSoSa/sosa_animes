@@ -3,10 +3,14 @@ import { Context } from "../../contexts/ContextProvider";
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 import { motion } from 'framer-motion';
 import Link from "next/link";
-import Image from "next/image";
+
+import {AiFillHome,AiFillPhone,AiFillAppstore} from 'react-icons/Ai'
+import {MdMovie} from 'react-icons/md'
+import {BsFillLightningChargeFill,BsPersonCircle} from 'react-icons/bs'
 
 import Logo from '../../public/assets/AnimeLogo.png'
 import Button from "../Home/banner/Button";
+import ItemNav from "./ItemNav";
 
 export default function OpenNav() {
 
@@ -63,29 +67,30 @@ export default function OpenNav() {
                     border-yellow
                     bg-opacity-75`}
                 >
-                    <Image className="m-2 mb-5" src={Logo} alt="Logo" width={75} height={75} />
-                    <ul className="flex flex-col mt-2 gap-10">
-
-                        <Link href="/">
-                            <Button color="yellow" text="white">Procurar</Button>
+                    <ul className="flex flex-col mt-2 gap-5 items-center">
+                        <Link href="/conta" onClick={() => setNavToggle(false)}>
+                            <BsPersonCircle style={{fontSize:'4.5rem', color:'white',marginTop:20}}/>
                         </Link>
-                        <Link href="/">
-                            <Button color="yellow" text="white">Favoritos</Button>
+                        <Link href="/" onClick={() => setNavToggle(false)}>
+                            <ItemNav name="Home" color="yellow" text="white"><AiFillHome style={style}/></ItemNav >
                         </Link>
-                        <Link href="/filmes">
-                            <Button color="yellow" text="white">Categorias</Button>
+                        <Link href="/favoritos" onClick={() => setNavToggle(false)}>
+                            <ItemNav name="Favoritos"  color="yellow" text="white"><BsFillLightningChargeFill style={style}/></ItemNav >
                         </Link>
-                        <Link href="/series">
-                            <Button color="yellow" text="white">Filmes</Button>
+                        <Link href="/tv/geral/1" onClick={() => setNavToggle(false)}>
+                            <ItemNav name="Categorias"  color="yellow" text="white"><AiFillAppstore style={style}/></ItemNav >
                         </Link>
-                        <Link href="/documentarios">
-                            <Button color="yellow" text="white">Contato</Button>
+                        <Link href="/movie/geral/1" onClick={() => setNavToggle(false)}>
+                            <ItemNav name="Filmes"  color="yellow" text="white"><MdMovie style={style}/></ItemNav >
+                        </Link>
+                        <Link href="/sobre" onClick={() => setNavToggle(false)}>
+                            <ItemNav name="Sobre"  color="yellow" text="white"><AiFillPhone style={style}/></ItemNav >
                         </Link>
 
                     </ul>
 
                     <Link 
-                        className="mb-5 rounded-md text-black bg-white shadow p-2 shadow-black absolute bottom-0 mb-1 font-bold cursor-pointer border-2 border-black hover:border-green" 
+                        className="mb-5 rounded-md text-black bg-light_green shadow p-2 shadow-black absolute bottom-0 mb-1 font-bold cursor-pointer" 
                         target="_blank" href={"https://portfolio-fb.vercel.app"}>
                         <p>
                             FeSOSA

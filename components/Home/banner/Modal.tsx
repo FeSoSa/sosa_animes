@@ -20,23 +20,17 @@ export default function Modal({ ID, type, name }: Props) {
   const { openModal, setOpenModal } = useContext(Context);
 
   // Define o estado para typeMedia e selectedTrailer
-  const [typeMedia, setTypeMedia] = useState<'tv' | 'movie'>('tv');
   const [selectedTrailer, setSelectedTrailer] = useState<IVideo[]>([]);
 
   // Define o estado selectNum e inicializa com o comprimento da array selectedTrailer - 1
   const [selectNum, setSelectNum] = useState(0);
-
-  // Define o efeito colateral para atualizar typeMedia quando o valor de type muda
-  useEffect(() => {
-    setTypeMedia(type ? 'movie' : 'tv');
-  }, [type]);
 
   // Define o efeito colateral para buscar vídeos quando o ID ou typeMedia muda
   useEffect(() => {
     if (ID !== undefined) {
       getVideos();
     }
-  }, [ID, typeMedia]);
+  }, [ID]);
 
   // Efeito colateral para atualizar selectNum quando selectedTrailer é alterado
   useEffect(() => {
@@ -48,7 +42,7 @@ export default function Modal({ ID, type, name }: Props) {
   // Função assíncrona para buscar vídeos
   async function getVideos() {
     try {
-      const response = await getTrailers(ID, typeMedia);
+      const response = await getTrailers(ID, type);
       
       if (response && response.results && response.results.length > 0) {
         const { results } = response;

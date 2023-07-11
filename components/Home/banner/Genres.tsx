@@ -1,12 +1,13 @@
 import React from "react";
 import { movieGenres, tvGenres } from "../../../constants/genres";
+import { Igenres } from "../../../typing.d.ts";
 
 interface Props {
     genres: number[],
     mediaType: 'tv' | 'movie'
 }
 
-export default function Genres({ genres, mediaType }: Props) {
+export default function Genres({ genres, mediaType,}: Props) {
     return (
         <>
             {genres && genres.length > 0 && (

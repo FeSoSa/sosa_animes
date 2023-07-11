@@ -1,33 +1,34 @@
-import { useRouter } from "next/router";
 import React from "react";
 
 interface Props {
     children: React.ReactNode,
     color: string,
     text: string,
-    id: number,
-    type:'tv' | 'movie'
+    name?:string
 }
 
-export default function DetailButton({ children, color, text, id ,type}: Props) {
-    const route = useRouter()
-
+export default function ItemNav({ children, name, color, text }: Props) {
     return (
         <button
-            onClick={() => route.push(`/${type}/details/${id}`)}
             className={`
+            flex
+            justify-center
+            flex-col
+            text-center
+            items-center
             bg-${color} 
             text-${text} 
             rounded 
             p-2
-            w-[8rem] 
+            w-[6rem]
             font-bold
             border-black
             border-2
             hover:border-white
             `}
         >
-            {children}
+            <h3>{name}</h3>
+            <>{children}</>
         </button>
     )
 }

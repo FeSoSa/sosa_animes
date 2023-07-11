@@ -23,7 +23,7 @@ export interface IAnimes {
     origin_country?: string[];
     original_name?: string;
     index?: number;
-    genres?: genres[]
+    genres?: Igenres[]
     production_companies?: IPCompany[]
     number_of_seasons?: number
 }
@@ -60,7 +60,7 @@ export interface IDetails {
     type: string
     vote_average: number
     vote_count: number
-    genres: genres[]
+    genres: Igenres[]
     production_companies?: IPCompany[]
     number_of_seasons: number
 }
@@ -115,7 +115,7 @@ export interface IPCompany {
     name: string,
     origin_country: string
 }
-export interface genres {
+export interface Igenres {
     id: number,
     name: string
 }
@@ -136,6 +136,11 @@ export interface IContext {
     setFavorite: Dispatch<SetStateAction<IAnimes[]>>
     openModal: boolean,
     setOpenModal: Dispatch<SetStateAction<boolean>>
+}
+
+export interface ISort{
+    value:string,
+    label:string
 }
 
 export interface IVideo {

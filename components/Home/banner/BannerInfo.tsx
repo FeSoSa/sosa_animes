@@ -56,7 +56,7 @@ export default function BannerInfo({ Anime }: Props) {
                     </div>
                 </div>
             </div>
-            <Modal ID={Anime.id} type={Anime.title} name={Anime.title || Anime.name}/>
+            <Modal ID={Anime.id} type={Anime.title?'movie':'tv'} name={Anime.title || Anime.name}/>
         </section>
     )
 }

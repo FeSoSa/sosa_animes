@@ -1,8 +1,10 @@
+import apiVariables from "../utils/apiVariables"
+
 const API_KEY = process.env.NEXT_KEY
-const API_BASE = 'https://api.themoviedb.org/3/'
-const PROVIDERS = '&watch_region=BR&with_watch_providers=283|1796|619|384'
-const NETWORKS = '&with_networks=1175|614|1112|159|98|1521|1|94|160|201|861|173'
-const COMPANIES = '&with_companies=3756|2073|2883|882|21444|2918|5542|155586|2849|10342|5438|6683'
+const API_BASE = apiVariables.base.base_url
+const PROVIDERS = apiVariables.base.providers
+const NETWORKS = apiVariables.base.networks
+const COMPANIES = apiVariables.base.companies
 
 const date= new Date()
 const year = date.getFullYear()

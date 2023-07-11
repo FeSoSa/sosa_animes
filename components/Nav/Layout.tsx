@@ -13,7 +13,7 @@ export default function Layout({ children }: Props) {
         <>
             
             <Nav />
-            <>{children}</>
+            {children}
             <Footer />
         </>
     );

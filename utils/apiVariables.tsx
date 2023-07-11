@@ -6,6 +6,9 @@ interface ApiVariables {
   base: {
     base_url: string;
     api_key: string | undefined;
+    providers:string;
+    networks:string;
+    companies:string
   };
   images: {
     base_url: string;
@@ -26,7 +29,11 @@ export const getSecret = async () => {
 const apiVariables: ApiVariables = {
   base: {
     base_url: "https://api.themoviedb.org/3/",
-    api_key: process.env.IMDB_KEY,
+    api_key: process.env.NEXT_KEY,
+    providers: "&watch_region=BR&with_watch_providers=283|1796|619|384",
+    networks: "&with_networks=1175|614|1112|159|98|1521|1|94|160|201|861|173",
+    companies: "&with_companies=3756|2073|2883|882|21444|2918|5542|155586|2849|10342|5438|6683"
+
   },
   images: {
     base_url: "https://image.tmdb.org/t/p/",
@@ -38,5 +45,5 @@ const apiVariables: ApiVariables = {
   },
 };
 
-export const banner = `${apiVariables.images.base_url}${apiVariables.images.backdrop_sizes[2]}/`;
+export const banner = `${apiVariables.images.base_url}${apiVariables.images.backdrop_sizes[3]}/`;
 export default apiVariables;

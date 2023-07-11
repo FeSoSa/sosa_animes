@@ -48,6 +48,12 @@ body {
 
 }
 
+.detail-gradient{
+  width: inherit;
+  height: inherit;
+  background: linear-gradient(to top, #222222 1%, transparent 5%);
+}
+
 .gradient-v {
   width: inherit;
   height: inherit;
@@ -89,6 +95,9 @@ body {
   transform: rotate(360deg);
 }
 
+.beforeContent::before {
+  content: 'Ordenar por';
+}
 
 .AnimeRow:hover{
   transition: all ease 1s;
