@@ -4,7 +4,7 @@ import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 import { motion } from 'framer-motion';
 import Link from "next/link";
 
-import { AiFillHome, AiFillPhone, AiFillAppstore } from 'react-icons/Ai'
+import { AiFillHome, AiFillPhone, AiFillAppstore } from 'react-icons/ai'
 import { MdMovie } from 'react-icons/md'
 import { BsFillLightningFill, BsPersonCircle } from 'react-icons/bs'
 

@@ -1,6 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
-import { AiOutlinePlus, AiOutlineCheck } from 'react-icons/Ai'
+import React from "react";
 
+import { AiOutlinePlus} from 'react-icons/ai'
 import {BsFillLightningChargeFill} from 'react-icons/bs'
 interface Props {
     added:boolean,
