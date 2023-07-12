@@ -17,13 +17,6 @@ interface Props {
 export default function DetailsTop({ Anime }: Props) {
   const { favorite, setFavorite } = useContext(Context);
 
-  useEffect(() => {
-    // Atualiza os IDs dos gêneros quando os gêneros do anime são alterados
-    if (Anime.genres) {
-      getIDS();
-    }
-  }, [Anime.genres]);
-
   const [genreID, setGenreID] = useState<number[]>([]);
 
   const getIDS = () => {
@@ -36,6 +29,13 @@ export default function DetailsTop({ Anime }: Props) {
       });
     });
   };
+
+  useEffect(() => {
+    // Atualiza os IDs dos gêneros quando os gêneros do anime são alterados
+    if (Anime.genres) {
+      getIDS();
+    }
+  }, [Anime.genres ,getIDS]);
 
   return (
     <main className="p-10 bg-black bg-opacity-75">

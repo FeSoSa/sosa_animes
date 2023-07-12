@@ -21,7 +21,7 @@ export default function favoritos() {
             <div className="w-screen h-screen">
                 <div className="flex justify-center p-5 gap-7  flex-wrap">
                     {favorite.map((i) => (
-                        <Link href={`/${i.name?'tv':'movie'}/details/${i.id}`}>
+                        <Link href={`/${i.name?'tv':'movie'}/details/${i.id}`} key={i.id}>
                             <Image
                                 className="transition-all duration-200 hover:scale-105 rounded-xl shadow-white hover:shadow hover:border-yellow border-2 border-transparent"
                                 width={0}

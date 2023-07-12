@@ -13,7 +13,7 @@ interface Props {
   genre: string;
   sort: string;
   search: string;
-  setMaxPages:Dispatch<SetStateAction<number>>
+  setMaxPages: Dispatch<SetStateAction<number>>;
 }
 
 export default function ExploreAnime({ type, page, genre, sort, search, setMaxPages }: Props) {
@@ -28,20 +28,14 @@ export default function ExploreAnime({ type, page, genre, sort, search, setMaxPa
     ref(node);
   }, [ref]);
 
-  useEffect(() => {
-    if (type || page || search || sort || genre) {
-      getAll();
-    }
-  }, [type, page, search, sort,genre]);
-  
-  const getAll = async () => {
-    if(genre){
-      const response = await getExplore(type,type=='tv'?genres[genre].id:genres[genre].movie||genres[genre].id, sort, page, search);
+  const getAll = useCallback(async () => {
+    if (genre) {
+      const response = await getExplore(type, type === 'tv' ? genres[genre].id : genres[genre].movie || genres[genre].id, sort, page, search);
       if (response) {
         const { results } = response;
-        const {total_pages} = response
+        const { total_pages } = response;
         if (search.length > 1) {
-          const filteredList = results.filter((anime:IAnimes) => anime.genre_ids.includes(16));
+          const filteredList = results.filter((anime: IAnimes) => anime.genre_ids.includes(16));
           setAnimeList(filteredList);
           setMaxPages(total_pages)
         } else {
@@ -50,7 +44,13 @@ export default function ExploreAnime({ type, page, genre, sort, search, setMaxPa
         }
       }
     }
-  };
+  }, [type, genre, sort, page, search, setMaxPages]);
+
+  useEffect(() => {
+    if (type || page || search || sort || genre) {
+      getAll();
+    }
+  }, [type, page, search, sort, genre, getAll]);
 
   return (
     <section

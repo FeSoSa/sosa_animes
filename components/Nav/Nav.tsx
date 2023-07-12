@@ -85,7 +85,7 @@ export default function OpenNav() {
                         <Link href="/" >
                             <ItemNav name="Home" color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
                         </Link>
-                        <Link href="/favoritos" >
+                        <Link href="/Favoritos" >
                             <ItemNav name="Favoritos" color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
                         </Link>
                         <Link href="/tv/geral/1" >
@@ -94,7 +94,7 @@ export default function OpenNav() {
                         <Link href="/movie/geral/1" >
                             <ItemNav name="Filmes" color="yellow" text="white"><MdMovie style={style} /></ItemNav >
                         </Link>
-                        <Link href="/sobre" >
+                        <Link href="/Sobre" >
                             <ItemNav name="Sobre" color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
                         </Link>
                     </ul>

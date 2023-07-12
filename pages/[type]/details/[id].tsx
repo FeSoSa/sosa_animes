@@ -14,12 +14,6 @@ export default function Details() {
 
   const { selectedAnime, setSelectedAnime } = useContext(Context);
 
-  useEffect(() => {
-    if (type && id) {
-      getDetail();
-    }
-  }, [type, id]);
-
   async function getDetail() {
     try {
       const response = await getDetails(type, id);
@@ -28,6 +22,12 @@ export default function Details() {
       console.log(error);
     }
   }
+
+  useEffect(() => {
+    if (type && id) {
+      getDetail();
+    }
+  }, [type, id, getDetail]);
 
   return (
     <>

@@ -25,20 +25,6 @@ export default function Modal({ ID, type, name }: Props) {
   // Define o estado selectNum e inicializa com o comprimento da array selectedTrailer - 1
   const [selectNum, setSelectNum] = useState(0);
 
-  // Define o efeito colateral para buscar vídeos quando o ID ou typeMedia muda
-  useEffect(() => {
-    if (ID !== undefined) {
-      getVideos();
-    }
-  }, [ID]);
-
-  // Efeito colateral para atualizar selectNum quando selectedTrailer é alterado
-  useEffect(() => {
-    if (selectedTrailer.length > 0) {
-      setSelectNum(selectedTrailer.length - 1);
-    }
-  }, [selectedTrailer]);
-
   // Função assíncrona para buscar vídeos
   async function getVideos() {
     try {
@@ -53,6 +39,19 @@ export default function Modal({ ID, type, name }: Props) {
     }
   }
   
+    // Define o efeito colateral para buscar vídeos quando o ID ou typeMedia muda
+    useEffect(() => {
+      if (ID !== undefined) {
+        getVideos();
+      }
+    }, [ID ,getVideos]);
+  
+    // Efeito colateral para atualizar selectNum quando selectedTrailer é alterado
+    useEffect(() => {
+      if (selectedTrailer.length > 0) {
+        setSelectNum(selectedTrailer.length - 1);
+      }
+    }, [selectedTrailer ,setSelectedTrailer]);
 
   // Função para fechar o modal e redefinir o selectNum para o valor inicial
   const closeModal = () => {
