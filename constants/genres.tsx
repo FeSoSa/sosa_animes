@@ -1,64 +1,63 @@
 import { IDs, IGenres } from "../typing.d.ts";
 
 const genres: IGenres = {
-    geral: { name: "Geral", id: 0 },
-    thriller: { name: "Thriller", id: 53 },
-    cinema: { name: "Cinema", id: 10770 },
-    romantico: { name: "Romantico", id: 10749 },
-    musical: { name: "Musical", id: 10402 },
-    terror: { name: "Terror", id: 27 },
-    historia: { name: "História", id: 36 },
+    geral: {
+      name: "Geral", id: 0,
+      
+    },
+    romantico: {
+      name: "Romantico", id: 10749,
+      
+    },
+    terror: {
+      name: "Terror", id: 27,
+      
+    },
+    historia: {
+      name: "História", id: 36,
+      
+    },
     fantasia: {
-        name: "Fantasia",
-        id: 14,
+      name: "Fantasia",
+      id: 14,
+      
     },
     aventura: {
-        name: "Aventura",
-        id: 12,
+      name: "Aventura",
+      id: 12,
+      
     },
-    acao: { name: "Ação", id: 28 },
-    "acao-e-aventura": { name: "Ação & Aventura", id: 10759 },
-    animacao: { name: "Animação", id: 16 },
-    comedia: { name: "Comédia", id: 35 },
-    crime: { name: "Crime", id: 80 },
-    documentario: { name: "Documentário", id: 99 },
-    drama: { name: "Drama", id: 18 },
-    familia: {
-        name: "Família",
-        id: 10751,
+    acao: {
+      name: "Ação", id: 28,
+      
     },
-    kids: { name: "Kids", id: 10762 },
+    "acao-e-aventura": { name: "Ação & Aventura", id: 10759, movie:0 },
+    animacao: {
+      name: "Animação", id: 16,
+      
+    },
+    comedia: {
+      name: "Comédia", id: 35,
+      
+    },
+    drama: {
+      name: "Drama", id: 18,
+      
+    },
     misterio: {
-        name: "Mistério",
-        id: 9648,
-    },
-    noticias: {
-        name: "Novela",
-        id: 10766,
-    },
-    reality: {
-        name: "Reality",
-        id: 10764,
+      name: "Mistério",
+      id: 9648,
+      
     },
     "ficcao-cientifica": {
         name: "Ficção Científica",
-        id: 878,
-    },
-    novela: {
-        name: "Novela",
-        id: 10766,
-    },
-    conversa: {
-        name: "Conversa",
-        id: 10767,
-    },
-    faroeste: {
-        name: "Faroeste",
-        id: 37,
+        id: 10765,
+        movie:878
     },
     guerra: {
-        name: "Guerra",
-        id: 10752,
+      name: "Guerra",
+      id: 10752,
+      
     },
     "guerra-e-politica": {
         name: "Guerra & Política",

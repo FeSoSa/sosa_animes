@@ -32,10 +32,11 @@ export default function ExploreAnime({ type, page, genre, sort, search, setMaxPa
     if (type || page || search || sort || genre) {
       getAll();
     }
-  }, [type, page, search, sort]);
+  }, [type, page, search, sort,genre]);
+  
   const getAll = async () => {
     if(genre){
-      const response = await getExplore(type, genres[genre].id, sort, page, search);
+      const response = await getExplore(type,type=='tv'?genres[genre].id:genres[genre].movie||genres[genre].id, sort, page, search);
       if (response) {
         const { results } = response;
         const {total_pages} = response

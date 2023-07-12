@@ -51,7 +51,7 @@ body {
 .detail-gradient{
   width: inherit;
   height: inherit;
-  background: linear-gradient(to top, #222222 1%, transparent 5%);
+  background: linear-gradient(to right, #FFA400 , transparent 90%);
 }
 
 .gradient-v {

@@ -142,6 +142,12 @@ export interface ISort{
     value:string,
     label:string
 }
+export interface IGenre{
+    name:string
+    value:string,
+    movie?:string
+}
+
 
 export interface IVideo {
     iso_639_1: string;
@@ -159,7 +165,8 @@ export interface IVideo {
 export interface IGenres {
     [key: string | number]: {
         name: string,
-        id: number
+        id: number,
+        movie?:number
     }
 }
 

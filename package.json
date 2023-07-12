@@ -14,6 +14,7 @@
     "@formkit/auto-animate": "^0.7.0",
     "@headlessui/react": "^1.7.15",
     "@mui/material": "^5.13.7",
+    "@primer/octicons-react": "^19.4.0",
     "@types/node": "20.2.5",
     "@types/react": "18.2.7",
     "@types/react-dom": "18.2.4",

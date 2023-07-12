@@ -7,8 +7,9 @@ import NextPage from "../../../components/Categories/NextPage";
 export default function Categorias() {
 
   const router = useRouter()
-  const { type, genre, page } = router.query as { type: 'tv' | 'movie'; genre:string; page: string };
+  const { type, genreParam, page } = router.query as { type: 'tv' | 'movie'; genreParam:string; page: string };
   const [search, setSearch] = useState('')
+  const [genre, setGenre] = useState<string>('geral')
   const [maxPages,setMaxPages] = useState(0)
   const [sort, setSort] = useState('popularity.desc')
 
@@ -23,7 +24,7 @@ export default function Categorias() {
       </header>
       <div className="flex flex-row">
 
-        <ExploreMenu setSort={setSort} search={search} setSearch={setSearch} sort={sort} />
+        <ExploreMenu setGenre={setGenre} genre={genre} setSort={setSort} search={search} setSearch={setSearch} sort={sort}/>
         <div className="flex flex-col">
           
           <ExploreAnime type={type} genre={genre} page={parseInt(page)} sort={sort} search={search} setMaxPages={setMaxPages}/>

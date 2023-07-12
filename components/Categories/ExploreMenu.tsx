@@ -1,14 +1,17 @@
 import React, { Dispatch, SetStateAction } from "react";
 import SelectSort from "./SelectSort";
+import SelectGenre from "./SelectGenre";
 
 interface Props {
   setSort: Dispatch<SetStateAction<string>>,
   sort: string
   search: string,
-  setSearch: Dispatch<SetStateAction<string>>
+  setSearch: Dispatch<SetStateAction<string>>,
+  genre:string,
+  setGenre:Dispatch<SetStateAction<string>>
 }
 
-export default function ExploreMenu({sort, setSort, search, setSearch }: Props) {
+export default function ExploreMenu({sort, setSort, search, setSearch,  genre, setGenre}: Props) {
   return (
     <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col">
       <input
@@ -20,7 +23,7 @@ export default function ExploreMenu({sort, setSort, search, setSearch }: Props) 
         placeholder="Procurar"
       />
       <SelectSort setSort={setSort} sort={sort}/>
-
+      <SelectGenre setGenre={setGenre} genre={genre}/>
     </aside>
   )
 }
