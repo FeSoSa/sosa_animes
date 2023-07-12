@@ -6,7 +6,7 @@ import Image from "next/image";
 import apiVariables from "../utils/apiVariables";
 import Link from "next/link";
 
-export default function favoritos() {
+export default function Favoritos() {
 
     const { favorite, setFavorite } = useContext(Context)
     const base_url = apiVariables.images.base_url

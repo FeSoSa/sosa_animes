@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function sobre() {
+export default function Sobre() {
     return (
         <div className="w-screen min-h-screen">
             <div className="flex flex-col">
