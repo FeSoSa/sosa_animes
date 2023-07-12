@@ -1,9 +1,9 @@
 import React, { useContext } from "react";
 
 import { BsFillLightningChargeFill } from 'react-icons/bs'
-import { Context } from "../contexts/ContextProvider";
+import { Context } from "../../contexts/ContextProvider";
 import Image from "next/image";
-import apiVariables from "../utils/apiVariables";
+import apiVariables from "../../utils/apiVariables";
 import Link from "next/link";
 
 export default function Favoritos() {
