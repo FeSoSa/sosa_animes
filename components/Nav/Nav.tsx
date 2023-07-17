@@ -1,18 +1,29 @@
-import React, { useContext, useEffect, useRef } from "react";
-import { Context } from "../../contexts/ContextProvider";
+import React, { useContext, useEffect, useRef, useState } from "react";
+import { Context, ContextProvider } from "../../contexts/ContextProvider";
 import { MdOutlineKeyboardDoubleArrowRight } from 'react-icons/md'
 import { motion } from 'framer-motion';
 import Link from "next/link";
+import ItemNav from "./ItemNav";
+import { Switch } from "@headlessui/react";
 
 import { AiFillHome, AiFillPhone, AiFillAppstore } from 'react-icons/ai'
 import { MdMovie } from 'react-icons/md'
 import { BsFillLightningFill, BsPersonCircle } from 'react-icons/bs'
-
-import ItemNav from "./ItemNav";
+import { Translations } from "../../constants/Translations";
 
 export default function OpenNav() {
     const { setNavToggle, navToggle, navBlack, setNavBlack } = useContext(Context);
     const navRef = useRef<HTMLButtonElement>(null);
+
+    const {brLang,setBrLang} = useContext(Context)
+    const BR = Translations.BR.nav
+    const ENG = Translations.ENG.nav
+    const [selectedLang,setSelectedLang] = useState(BR)
+    useEffect(() => {
+        if(brLang){
+            setSelectedLang(BR)
+        }else{ setSelectedLang(ENG) }
+    },[brLang,selectedLang,BR,ENG])
 
     const style = {
         display: 'flex',
@@ -36,22 +47,25 @@ export default function OpenNav() {
         }
     }, [setNavBlack])
 
-    useEffect(() => {
-        const handleOutsideClick = (event: MouseEvent) => {
-          if (navRef.current && !navRef.current.contains(event.target as Node)) {
-            setNavToggle(false);
-          }
-        };
-      
-        document.addEventListener("click", handleOutsideClick); // Substituído "mousedown" por "click"
-      
-        return () => {
-          document.removeEventListener("click", handleOutsideClick); // Substituído "mousedown" por "click"
-        };
-      }, [setNavToggle]);
-      
+useEffect(() => {
+  const handleOutsideClick = (event: MouseEvent) => {
+    if (
+      navRef.current &&
+      !navRef.current.contains(event.target as Node) &&
+      event.target instanceof HTMLElement &&
+      !event.target.id.includes('Changelanguage') &&
+      brLang !== navToggle
+    ) {
+      setNavToggle(false);
+    }
+  };
 
+  document.addEventListener("click", handleOutsideClick);
 
+  return () => {
+    document.removeEventListener("click", handleOutsideClick);
+  };
+}, [brLang, navToggle, setNavToggle]);
 
     return (
         <>
@@ -83,29 +97,39 @@ export default function OpenNav() {
                             <BsPersonCircle style={{ fontSize: '4.5rem', color: 'white', marginTop: 20 }} />
                         </Link>
                         <Link href="/" >
-                            <ItemNav name="Home" color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
+                            <ItemNav name={selectedLang.home} color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
                         </Link>
                         <Link href="/Favoritos" >
-                            <ItemNav name="Favoritos" color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
+                            <ItemNav name={selectedLang.favorite} color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
                         </Link>
                         <Link href="/tv/geral/1" >
-                            <ItemNav name="Categorias" color="yellow" text="white"><AiFillAppstore style={style} /></ItemNav >
+                            <ItemNav name={selectedLang.categories} color="yellow" text="white"><AiFillAppstore style={style} /></ItemNav >
                         </Link>
                         <Link href="/movie/geral/1" >
-                            <ItemNav name="Filmes" color="yellow" text="white"><MdMovie style={style} /></ItemNav >
+                            <ItemNav name={selectedLang.movies} color="yellow" text="white"><MdMovie style={style} /></ItemNav >
                         </Link>
                         <Link href="/Sobre" >
-                            <ItemNav name="Sobre" color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
+                            <ItemNav name={selectedLang.about} color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
                         </Link>
                     </ul>
-
-                    <Link
-                        className="mb-5 rounded-md text-black bg-light_green shadow p-2 shadow-black absolute bottom-0 mb-1 font-bold cursor-pointer"
-                        target="_blank" href={"https://portfolio-fb.vercel.app"}>
-                        <p>
-                            FeSOSA
-                        </p>
-                    </Link>
+                    <Switch
+                        id="Changelanguage"
+                        checked={brLang}
+                        onChange={setBrLang}
+                        className={`relative mt-4 inline-flex h-[30px] w-[62px] shrink-0 cursor-pointer
+                            rounded-full border-2 border-transparent transition-all duration-500 ease-in-out 
+                            focus:outline-none focus-visible:ring-2  focus-visible:ring-white 
+                            focus-visible:ring-opacity-75 bg-white`}
+                        onClick={(event) => { event.stopPropagation() ;  }} 
+                    >
+                        <span
+                            aria-hidden="true"
+                            style={{ backgroundImage: brLang ? 'url(/assets/brIcon.png)' : 'url(/assets/euaIcon.png)' }}
+                            className={`${brLang ? 'translate-x-8' : 'translate-x-0'} bg-center bg-contain pointer-events-none 
+                            inline-block h-[26px] w-[26px] transform rounded-full shadow-lg ring-0 transition 
+                            duration-200 ease-in-out`}
+                        />
+                    </Switch>
                 </div>
             </motion.nav>
 

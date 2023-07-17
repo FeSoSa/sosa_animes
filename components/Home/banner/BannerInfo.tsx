@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { IAnimes } from "../../../typing.d.ts";
 import Stars from "./Stars";
 import Genres from "./Genres";
@@ -9,6 +9,7 @@ import addToList from "../../../utils/addToList";
 import ModalButton from "./ModalButton";
 import Modal from "./Modal";
 import DetailButton from "./DetailButton";
+import { Translations } from "../../../constants/Translations";
 
 interface Props {
     Anime: IAnimes
@@ -17,6 +18,16 @@ interface Props {
 export default function BannerInfo({ Anime }: Props) {
 
     const { favorite, setFavorite } = useContext(Context)
+
+    const {brLang} = useContext(Context)
+    const BR = Translations.BR.home
+    const ENG = Translations.ENG.home
+    const [selectedLang,setSelectedLang] = useState(BR)
+    useEffect(() => {
+        if(brLang){
+            setSelectedLang(BR)
+        }else{ setSelectedLang(ENG) }
+    },[brLang,selectedLang,BR,ENG])
 
     return (
         <section>
@@ -43,10 +54,10 @@ export default function BannerInfo({ Anime }: Props) {
                 </div>
                 <div className="flex gap-5">
                     <div>
-                        <ModalButton TrailerID={Anime.id} color='yellow' text='white'>Ver Trailer</ModalButton>
+                        <ModalButton TrailerID={Anime.id} color='yellow' text='white'>{selectedLang.trailer}</ModalButton>
                     </div>
                     <div>
-                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">Detalhes</DetailButton>
+                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">{selectedLang.details}</DetailButton>
                     </div>
                     <div>
                         <FavoriteButton

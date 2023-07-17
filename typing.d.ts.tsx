@@ -136,6 +136,8 @@ export interface IContext {
     setFavorite: Dispatch<SetStateAction<IAnimes[]>>
     openModal: boolean,
     setOpenModal: Dispatch<SetStateAction<boolean>>
+    brLang:boolean,
+    setBrLang: Dispatch<SetStateAction<boolean>>
 }
 
 export interface ISort{

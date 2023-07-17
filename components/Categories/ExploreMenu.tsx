@@ -1,6 +1,8 @@
-import React, { Dispatch, SetStateAction } from "react";
+import React, { Dispatch, SetStateAction, useContext, useEffect, useState } from "react";
 import SelectSort from "./SelectSort";
 import SelectGenre from "./SelectGenre";
+import { Translations } from "../../constants/Translations";
+import { Context } from "../../contexts/ContextProvider";
 
 interface Props {
   setSort: Dispatch<SetStateAction<string>>,
@@ -12,6 +14,17 @@ interface Props {
 }
 
 export default function ExploreMenu({sort, setSort, search, setSearch,  genre, setGenre}: Props) {
+
+    const {brLang} = useContext(Context)
+    const BR = Translations.BR.lang
+    const ENG = Translations.ENG.lang
+    const [selectedLang,setSelectedLang] = useState(BR)
+    useEffect(() => {
+        if(brLang){
+            setSelectedLang(BR)
+        }else{ setSelectedLang(ENG) }
+    },[brLang,selectedLang,BR,ENG])
+
   return (
     <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col">
       <input
@@ -20,10 +33,10 @@ export default function ExploreMenu({sort, setSort, search, setSearch,  genre, s
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         alt="Search Anime"
-        placeholder="Procurar"
+        placeholder={ selectedLang == 'pt-BR' ? 'Procurar' : 'Search' }
       />
-      <SelectSort setSort={setSort} sort={sort}/>
-      <SelectGenre setGenre={setGenre} genre={genre}/>
+      <SelectSort setSort={setSort} sort={sort} lang={selectedLang}/>
+      <SelectGenre setGenre={setGenre} genre={genre} lang={selectedLang}/>
     </aside>
   )
 }

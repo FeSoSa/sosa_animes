@@ -1,6 +1,6 @@
 import { RadioGroup } from "@headlessui/react";
-import React, { Dispatch, SetStateAction, useEffect } from "react";
-import { GenreBy } from "../../constants/GenreBy";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { GenreByBR, GenreByEN } from "../../constants/GenreBy";
 import { useRouter } from "next/router";
 
 import { GoCheck } from 'react-icons/go'
@@ -8,20 +8,28 @@ import { CheckCircleIcon, CheckCircleFillIcon } from '@primer/octicons-react'
 
 interface Props {
   genre: string,
-  setGenre: Dispatch<SetStateAction<string>>
+  setGenre: Dispatch<SetStateAction<string>>,
+  lang: string
 }
 
-export default function SelectGenre({ genre, setGenre }: Props) {
+export default function SelectGenre({ genre, setGenre, lang }: Props) {
 
   const router = useRouter()
   const { type, page } = router.query as { type: string, page: string }
 
+  const [selectedLang,setSelectedLang] = useState(GenreByBR)
+  useEffect(() => {
+    if(lang=='pt-BR'){
+      setSelectedLang(GenreByBR)
+    }else{setSelectedLang(GenreByEN)}
+  },[lang,setSelectedLang,GenreByBR,GenreByEN])
+
   return (
     <div>
       <RadioGroup value={genre} onChange={setGenre} className="w-[14rem]">
-        <RadioGroup.Label>Generos:</RadioGroup.Label>
+        <RadioGroup.Label>{lang == 'pt-BR' ? 'Generos:' : 'Genres:'}</RadioGroup.Label>
 
-        {GenreBy.map((i, index) =>
+        {selectedLang.map((i, index) =>
 
           <RadioGroup.Option key={index} value={type == 'movie' ? i.movie||i.value : i.value}
             onClick={() => router.push(`/${type}/${type == 'movie' ? i.movie||i.value : i.value}/${page}`)}

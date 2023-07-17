@@ -1,13 +1,13 @@
 import axios, { AxiosResponse } from "axios";
 import apiVariables from "./apiVariables";
 
-export const getDetails = async (type: string, id: string,) => {
+export const getDetails = async (type: string, id: string,lang:string) => {
   const BASE_URL = apiVariables.base.base_url;
   const KEY = process.env.NEXT_KEY;
 
   try {
     const response: AxiosResponse<any> = await axios.get(
-      `${BASE_URL}${type}/${id}?api_key=${KEY}&language=pt-br`
+      `${BASE_URL}${type}/${id}?api_key=${KEY}&language=${lang}`
     );
 
     const { data } = response;

@@ -1,5 +1,5 @@
-import React, { Dispatch, SetStateAction, useState } from "react";
-import { SortBy } from "../../constants/SortBy";
+import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { SortByBR, SortByEN } from "../../constants/SortBy";
 
 import { BsChevronDown } from 'react-icons/bs'
 import { Transition } from "@headlessui/react";
@@ -7,12 +7,21 @@ import { Transition } from "@headlessui/react";
 interface Props {
     setSort: Dispatch<SetStateAction<string>>;
     sort: string;
+    lang:string;
 }
 
-export default function SelectSort({ setSort, sort }: Props) {
+export default function SelectSort({ setSort, sort, lang }: Props) {
+
     const [openSelect, setOpenSelect] = useState(false)
 
-    const name = SortBy.find((option) => option.value === sort)
+    const [selectedLang,setSelectedLang] = useState(SortByBR)
+    useEffect(() => {
+      if(lang=='pt-BR'){
+        setSelectedLang(SortByBR)
+      }else{setSelectedLang(SortByEN)}
+    },[lang,setSelectedLang,SortByBR,SortByEN])
+
+    const name = selectedLang.find((option) => option.value === sort)
 
     return (
         <div className="w-[14rem]  text-black mt-2">
@@ -44,7 +53,7 @@ export default function SelectSort({ setSort, sort }: Props) {
 
                     {
 
-                        SortBy.map((i) =>
+                        selectedLang.map((i) =>
                             <h1
                                 className="
                                     hover:bg-[#FFD966] hover:shadow-md p-2 cursor-pointer hover:rounded z-50"

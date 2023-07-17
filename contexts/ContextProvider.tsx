@@ -11,7 +11,9 @@ const InitialValue:IContext = {
     favorite:[],
     setFavorite:() => {},
     openModal:false,
-    setOpenModal:() => {}
+    setOpenModal:() => {},
+    brLang:true,
+    setBrLang:() => {}
 }
 
 interface Props{
@@ -26,6 +28,7 @@ export function ContextProvider({children}:Props){
     const [navBlack,setNavBlack] = useState(false)
     const [favorite,setFavorite] = useState<IAnimes[]>([])
     const [openModal,setOpenModal] = useState(false)
+    const [brLang,setBrLang] = useState(true)
     return(
         <Context.Provider
         value={{
@@ -38,7 +41,9 @@ export function ContextProvider({children}:Props){
             favorite,
             setFavorite,
             openModal,
-            setOpenModal
+            setOpenModal,
+            brLang,
+            setBrLang
         }}
         >
             {children}
