@@ -5,7 +5,7 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 import ExitButton from "../../components/Login/ExitButton";
 
-export default function index() {
+export default function Conta() {
 
     const [user, loading] = useAuthState(auth)
     const router = useRouter()
