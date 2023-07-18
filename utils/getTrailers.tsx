@@ -8,7 +8,7 @@ import apiVariables from "./apiVariables";
 
 export const getTrailers = async (id: number, type: string) => {
   const BASE_URL = apiVariables.base.base_url;
-  const KEY = process.env.NEXT_KEY
+  const KEY = process.env.TMDB_KEY
 
 
   if (id < 1) {

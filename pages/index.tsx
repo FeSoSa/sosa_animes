@@ -5,6 +5,9 @@ import MainContainer from "../components/Home/MainContainer";
 import Head from "next/head";
 import axios from "axios";
 import requests from "../constants/requests";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../utils/firebaseConfig";
+import Loading from "../components/Loading/Loading";
 
 interface Props {
   PopularAnime: IAnimes[];
@@ -35,6 +38,9 @@ const Home = ({
     [MovieAnime, "Filmes"]
   ];
 
+  const [user, loading] = useAuthState(auth)
+
+
   return (
     <>
       <Head>
@@ -46,7 +52,10 @@ const Home = ({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <MainContainer Animes={Animes} Banner={PopularAnime} />
+      {loading&&!user || !loading&&!user || loading&&user
+        ?<Loading/>
+        :<MainContainer Animes={Animes} Banner={PopularAnime} />
+      }
     </>
   );
 };

@@ -1,6 +1,6 @@
 import apiVariables from "../utils/apiVariables"
 
-const API_KEY = process.env.NEXT_KEY
+const API_KEY = process.env.TMDB_KEY
 const API_BASE = apiVariables.base.base_url
 const PROVIDERS = apiVariables.base.providers
 const NETWORKS = apiVariables.base.networks

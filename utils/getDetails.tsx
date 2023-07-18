@@ -3,7 +3,7 @@ import apiVariables from "./apiVariables";
 
 export const getDetails = async (type: string, id: string,lang:string) => {
   const BASE_URL = apiVariables.base.base_url;
-  const KEY = process.env.NEXT_KEY;
+  const KEY = process.env.TMDB_KEY;
 
   try {
     const response: AxiosResponse<any> = await axios.get(

@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -25,12 +25,6 @@
   #banner {
     animation: banner 30s ease-in-out infinite;
   }
-}
-
-  @keyframes desc{
-    0%,10%{transform: translateY(0);}
-    75%,90%{transform:translateY(-35%);}
-    100%{transform: translateY(0)}
 }
 
 body {

@@ -4,7 +4,7 @@ import axios, { Axios, AxiosResponse } from "axios";
 
 export default async function getExplore(type: 'tv' | 'movie', genre = 0, sort: string, page: number, search: string) {
 
-    const API_KEY = process.env.NEXT_KEY
+    const API_KEY = process.env.TMDB_KEY
     const BASE_URL = apiVariables.base.base_url
     const NETWORKS = apiVariables.base.networks
     const COMPANIES = apiVariables.base.companies

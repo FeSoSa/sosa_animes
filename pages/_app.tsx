@@ -8,7 +8,7 @@ import Layout from '../components/Nav/Layout';
 export default function MyApp({ Component, pageProps }: AppProps) {
 
   return (
-      <main className='bg-principal'>
+      <main className='bg-[#222222]'>
         <ContextProvider >
           <Layout>
             <Component {...pageProps} />

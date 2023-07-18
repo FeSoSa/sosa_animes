@@ -16,7 +16,7 @@ export default function Footer() {
     },[brLang,selectedLang,BR,ENG])
 
     return (
-        <footer className="absolute bg-black w-full border-t-2 border-yellow text-center p-5 items-center justify-center ">
+        <footer className="absolute bg-black w-full h-[13vh] border-t-2 border-yellow text-center p-5 items-center justify-center ">
             <p><b>SosaAnime</b> - {selectedLang.footer}</p>
             <Link href={'https://portfolio-fb.vercel.app'} target="_blank">
                 <p className="inline-block text-green hover:border-b-yellow border-b-2 border-transparent">
