@@ -7,6 +7,7 @@ import ItemNav from "./ItemNav";
 import { Switch } from "@headlessui/react";
 import { Translations } from "../../constants/Translations";
 import { useRouter } from "next/router";
+import Image from "next/image";
 
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from '../../utils/firebaseConfig'
@@ -14,8 +15,6 @@ import { auth } from '../../utils/firebaseConfig'
 import { AiFillHome, AiFillPhone, AiFillAppstore } from 'react-icons/ai'
 import { MdMovie } from 'react-icons/md'
 import { BsFillLightningFill, BsPersonCircle } from 'react-icons/bs'
-import Loading from "../Loading/Loading";
-import Image from "next/image";
 
 export default function OpenNav() {
     const navRef = useRef<HTMLButtonElement>(null);
@@ -48,11 +47,15 @@ export default function OpenNav() {
     useEffect(() => {
         const handleOutsideClick = (event: MouseEvent) => {
             if (
-                navRef.current &&
-                !navRef.current.contains(event.target as Node) &&
                 event.target instanceof HTMLElement &&
+                !event.target.id.includes('Menu') &&
                 !event.target.id.includes('Changelanguage') &&
-                brLang !== navToggle
+                !event.target.id.includes('Account') &&
+                !event.target.id.includes('Favorites') &&
+                !event.target.id.includes('Home') &&
+                !event.target.id.includes('TvSeries') &&
+                !event.target.id.includes('Movies') &&
+                !event.target.id.includes('About')
             ) {
                 setNavToggle(false);
             }
@@ -83,10 +86,9 @@ export default function OpenNav() {
             {!loading && user &&
                 <>
                     <motion.nav
-                        id="menuRef"
+                        onClick={(event) => { event.stopPropagation(); }}
+                        id="Menu"
                         className={`flex w-[15rem] h-full fixed z-50`}
-                        ref={navRef}
-                        onBlur={() => setNavToggle(false)}
                         initial={{ x: '-100%' }}
                         animate={{ x: navToggle ? 0 : '-100%' }}
                         transition={{ duration: 0.5 }}
@@ -106,25 +108,25 @@ export default function OpenNav() {
                     bg-opacity-75`}
                         >
                             <ul className="flex flex-col mt-2 gap-5 items-center">
-                                <Link href="/Conta" >
+                                <Link href="/Conta" id="Account" onClick={(event) => { event.stopPropagation(); }}>
                                     {user
-                                        ? <Image src={user.photoURL!} alt="User Photo" width={80} height={80} className="mt-5 rounded-[50%] outline outline-yellow"/>
-                                        : <BsPersonCircle className="text-[4.5rem] text-white mt-5"/>
+                                        ? <Image src={user.photoURL!} alt="User Photo" width={80} height={80} className="mt-5 rounded-[50%] outline outline-yellow" />
+                                        : <BsPersonCircle className="text-[4.5rem] text-white mt-5" />
                                     }
                                 </Link>
-                                <Link href="/" >
+                                <Link href="/" id="Home" onClick={(event) => { event.stopPropagation(); }}>
                                     <ItemNav name={selectedLang.home} color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/Favoritos" >
+                                <Link href="/Favoritos" id="Favorites" onClick={(event) => { event.stopPropagation(); }}>
                                     <ItemNav name={selectedLang.favorite} color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/tv/geral/1" >
+                                <Link href="/tv/geral/1" id="TvSeries" onClick={(event) => { event.stopPropagation(); }}>
                                     <ItemNav name={selectedLang.categories} color="yellow" text="white"><AiFillAppstore style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/movie/geral/1" >
+                                <Link href="/movie/geral/1" id="Movies" onClick={(event) => { event.stopPropagation(); }}>
                                     <ItemNav name={selectedLang.movies} color="yellow" text="white"><MdMovie style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/Sobre" >
+                                <Link href="/Sobre" id="About" onClick={(event) => { event.stopPropagation(); }}>
                                     <ItemNav name={selectedLang.about} color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
                                 </Link>
                             </ul>
