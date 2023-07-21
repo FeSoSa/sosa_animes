@@ -1,10 +1,10 @@
 import axios from "axios";
 import React from "react";
-import requests from "../constants/requests";
+import { BRrequests } from "../constants/requests";
 
 export default async function getSlider() {
 
-    const response = await axios.get(requests.fetchAll).then((res) => res.data)
+    const response = await axios.get(BRrequests.fetchAll).then((res) => res.data)
 
     const {results} = response
 

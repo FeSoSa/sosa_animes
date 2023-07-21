@@ -10,7 +10,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from '../../utils/firebaseConfig'
+import { auth } from '../../db/firebaseConfig'
 
 import { AiFillHome, AiFillPhone, AiFillAppstore } from 'react-icons/ai'
 import { MdMovie } from 'react-icons/md'
@@ -18,16 +18,19 @@ import { BsFillLightningFill, BsPersonCircle } from 'react-icons/bs'
 
 export default function OpenNav() {
     const navRef = useRef<HTMLButtonElement>(null);
-    const { brLang, setBrLang } = useContext(Context)
-    const [user, loading, error] = useAuthState(auth)
+    const BR = Translations.BR
+    const ENG = Translations.ENG
+    const { language, setLanguage, translation, setTranslation } = useContext(Context)
+    const [switchLang,setSwitchLang] = useState(true)
+    const [user, loading] = useAuthState(auth)
     const router = useRouter()
 
     useEffect(() => {
         if (!loading && !user) {
 
-            router.replace('/Login')
+            router.replace(`/${language}/Login`)
         }
-    }, [loading, user])
+    }, [loading, user, language])
 
     const { setNavToggle, navToggle, navBlack, setNavBlack } = useContext(Context);
     useEffect(() => {
@@ -64,16 +67,19 @@ export default function OpenNav() {
         return () => {
             document.removeEventListener("click", handleOutsideClick);
         };
-    }, [brLang, navToggle, setNavToggle]);
+    }, [language, navToggle, setNavToggle]);
 
-    const BR = Translations.BR.nav
-    const ENG = Translations.ENG.nav
-    const [selectedLang, setSelectedLang] = useState(BR)
     useEffect(() => {
-        if (brLang) {
-            setSelectedLang(BR)
-        } else { setSelectedLang(ENG) }
-    }, [brLang, selectedLang, BR, ENG])
+        if (switchLang && user && language  !== 'pt-br') {
+            setLanguage('pt-br')
+            setTranslation(BR)
+            router.push('/pt-br')
+        } else if (!switchLang && user && language !== 'en-us') {
+            setLanguage('en-us')
+            setTranslation(ENG)
+            router.push('/en-us')
+        }
+      }, [switchLang, language]);
 
     const style = {
         display: 'flex',
@@ -108,32 +114,32 @@ export default function OpenNav() {
                     bg-opacity-75`}
                         >
                             <ul className="flex flex-col mt-2 gap-5 items-center">
-                                <Link href="/Conta" id="Account" onClick={(event) => { event.stopPropagation(); }}>
+                                <Link href={`/${language}/Conta`} id="Account" onClick={(event) => { event.stopPropagation(); }}>
                                     {user
-                                        ? <Image src={user.photoURL!} alt="User Photo" width={80} height={80} className="mt-5 rounded-[50%] outline outline-yellow" />
+                                        ? <Image src={user.photoURL!} alt="User Photo" width={80} height={80} className="mt-5 rounded-[50%] outline outline-yellow hover:outline-white" />
                                         : <BsPersonCircle className="text-[4.5rem] text-white mt-5" />
                                     }
                                 </Link>
-                                <Link href="/" id="Home" onClick={(event) => { event.stopPropagation(); }}>
-                                    <ItemNav name={selectedLang.home} color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
+                                <Link href={`/${language}`} id="Home" onClick={(event) => { event.stopPropagation(); }}>
+                                    <ItemNav name={translation.nav.home} color="yellow" text="white"><AiFillHome style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/Favoritos" id="Favorites" onClick={(event) => { event.stopPropagation(); }}>
-                                    <ItemNav name={selectedLang.favorite} color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
+                                <Link href={`/${language}/Favoritos`} id="Favorites" onClick={(event) => { event.stopPropagation(); }}>
+                                    <ItemNav name={translation.nav.favorite} color="yellow" text="white"><BsFillLightningFill style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/tv/geral/1" id="TvSeries" onClick={(event) => { event.stopPropagation(); }}>
-                                    <ItemNav name={selectedLang.categories} color="yellow" text="white"><AiFillAppstore style={style} /></ItemNav >
+                                <Link href={`/${language}/tv/geral/1`} id="TvSeries" onClick={(event) => { event.stopPropagation(); }}>
+                                    <ItemNav name={translation.nav.categories} color="yellow" text="white"><AiFillAppstore style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/movie/geral/1" id="Movies" onClick={(event) => { event.stopPropagation(); }}>
-                                    <ItemNav name={selectedLang.movies} color="yellow" text="white"><MdMovie style={style} /></ItemNav >
+                                <Link href={`/${language}/movie/geral/1`}id="Movies" onClick={(event) => { event.stopPropagation(); }}>
+                                    <ItemNav name={translation.nav.movies} color="yellow" text="white"><MdMovie style={style} /></ItemNav >
                                 </Link>
-                                <Link href="/Sobre" id="About" onClick={(event) => { event.stopPropagation(); }}>
-                                    <ItemNav name={selectedLang.about} color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
+                                <Link href={`/${language}/Sobre`} id="About" onClick={(event) => { event.stopPropagation(); }}>
+                                    <ItemNav name={translation.nav.about} color="yellow" text="white"><AiFillPhone style={style} /></ItemNav >
                                 </Link>
                             </ul>
                             <Switch
                                 id="Changelanguage"
-                                checked={brLang}
-                                onChange={setBrLang}
+                                checked={switchLang}
+                                onChange={setSwitchLang}
                                 className={`relative mt-4 inline-flex h-[30px] w-[62px] shrink-0 cursor-pointer
                             rounded-full border-2 border-transparent transition-all duration-500 ease-in-out 
                             focus:outline-none focus-visible:ring-2  focus-visible:ring-white 
@@ -142,8 +148,8 @@ export default function OpenNav() {
                             >
                                 <span
                                     aria-hidden="true"
-                                    style={{ backgroundImage: brLang ? 'url(/assets/brIcon.png)' : 'url(/assets/euaIcon.png)' }}
-                                    className={`${brLang ? 'translate-x-8' : 'translate-x-0'} bg-center bg-contain pointer-events-none 
+                                    style={{ backgroundImage: switchLang ? 'url(/assets/brIcon.png)' : 'url(/assets/euaIcon.png)' }}
+                                    className={`${switchLang? 'translate-x-8' : 'translate-x-0'} bg-center bg-contain pointer-events-none 
                             inline-block h-[26px] w-[26px] transform rounded-full shadow-lg ring-0 transition 
                             duration-200 ease-in-out`}
                                 />

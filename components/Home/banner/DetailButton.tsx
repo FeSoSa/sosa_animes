@@ -1,5 +1,6 @@
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../../../contexts/ContextProvider";
 
 interface Props {
     children: React.ReactNode,
@@ -10,11 +11,12 @@ interface Props {
 }
 
 export default function DetailButton({ children, color, text, id ,type}: Props) {
-    const route = useRouter()
+    const router = useRouter()
+    const {language} = useContext(Context)
 
     return (
         <button
-            onClick={() => route.push(`/${type}/details/${id}`)}
+            onClick={() => router.push(`/${language}/${type}/details/${id}`)}
             className={`
             bg-${color} 
             text-${text} 

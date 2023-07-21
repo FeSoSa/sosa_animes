@@ -15,16 +15,7 @@ interface Props {
 
 export default function ExploreMenu({sort, setSort, search, setSearch,  genre, setGenre}: Props) {
 
-    const {brLang} = useContext(Context)
-    const BR = Translations.BR.lang
-    const ENG = Translations.ENG.lang
-    const [selectedLang,setSelectedLang] = useState(BR)
-    useEffect(() => {
-        if(brLang){
-            setSelectedLang(BR)
-        }else{ setSelectedLang(ENG) }
-    },[brLang,selectedLang,BR,ENG])
-
+    const {translation} = useContext(Context)
   return (
     <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col">
       <input
@@ -33,10 +24,10 @@ export default function ExploreMenu({sort, setSort, search, setSearch,  genre, s
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         alt="Search Anime"
-        placeholder={ selectedLang == 'pt-BR' ? 'Procurar' : 'Search' }
+        placeholder={ translation.lang == 'pt-BR' ? 'Procurar' : 'Search' }
       />
-      <SelectSort setSort={setSort} sort={sort} lang={selectedLang}/>
-      <SelectGenre setGenre={setGenre} genre={genre} lang={selectedLang}/>
+      <SelectSort setSort={setSort} sort={sort} lang={translation.lang}/>
+      <SelectGenre setGenre={setGenre} genre={genre} lang={translation.lang}/>
     </aside>
   )
 }

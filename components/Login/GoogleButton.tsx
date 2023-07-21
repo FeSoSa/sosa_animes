@@ -1,16 +1,18 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 
 import google from '../../public/assets/google.png'
 import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 
-import { auth } from "../../utils/firebaseConfig";
+import { auth } from "../../db/firebaseConfig";
 import { useRouter } from "next/router";
+import { Context } from "../../contexts/ContextProvider";
 const provider = new GoogleAuthProvider()
 
 export default function GoogleButton() {
 
   const router = useRouter()
+  const {translation} = useContext(Context)
 
   const LoginWithGoogle = async () => {
     try {
@@ -32,7 +34,7 @@ export default function GoogleButton() {
   return (
     <button onClick={LoginWithGoogle} className="flex flex-row items-center bg-white text-black rounded-md p-2 gap-1 outline-none hover:scale-105">
       <Image src={google} alt="Google Icon" height={0} width={0} style={{ width: '25px', height: 'auto' }} />
-      <h2 className="text-[14px] font-medium">Login com Google</h2>
+      <h2 className="text-[14px] font-medium">{translation.login.google}</h2>
     </button>
   )
 }

@@ -1,11 +1,12 @@
 import { useRouter } from "next/router";
-import React, { Dispatch, SetStateAction, useCallback, useEffect, useState } from "react";
+import React, { Dispatch, SetStateAction, useCallback, useContext, useEffect, useState } from "react";
 import getExplore from "../../utils/getExplore";
 import { IAnimes } from "../../typing.d.ts";
 import Image from "next/image";
 import apiVariables from "../../utils/apiVariables";
 import genres from "../../constants/genres";
 import { useAutoAnimate } from '@formkit/auto-animate/react'
+import { Context } from "../../contexts/ContextProvider";
 
 interface Props {
   type: 'tv' | 'movie';
@@ -13,10 +14,12 @@ interface Props {
   genre: string;
   sort: string;
   search: string;
+  lang:string;
   setMaxPages: Dispatch<SetStateAction<number>>;
 }
 
-export default function ExploreAnime({ type, page, genre, sort, search, setMaxPages }: Props) {
+export default function ExploreAnime({ type, page, genre, sort, search, lang, setMaxPages }: Props) {
+  const {language} = useContext(Context)
   const router = useRouter();
   const base_url = apiVariables.images.base_url;
   const size = apiVariables.images.poster_sizes;
@@ -30,7 +33,7 @@ export default function ExploreAnime({ type, page, genre, sort, search, setMaxPa
 
   const getAll = useCallback(async () => {
     if (genre) {
-      const response = await getExplore(type, type === 'tv' ? genres[genre].id : genres[genre].movie || genres[genre].id, sort, page, search);
+      const response = await getExplore(type, type === 'tv' ? genres[genre].id : genres[genre].movie || genres[genre].id, sort, page, lang, search);
       if (response) {
         const { results } = response;
         const { total_pages } = response;
@@ -64,7 +67,7 @@ export default function ExploreAnime({ type, page, genre, sort, search, setMaxPa
           height={0}
           alt={anime.name || anime.title}
           src={`${poster}${anime.poster_path}`}
-          onClick={() => { router.push(`/${type}/details/${anime.id}`) }}
+          onClick={() => { router.push(`/${language}/${type}/details/${anime.id}`) }}
           key={anime.id}
           priority
           className="

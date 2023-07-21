@@ -1,16 +1,19 @@
 import Image from "next/image";
-import React from "react";
+import React, { useContext } from "react";
 
 import github from '../../public/assets/github.png'
 import { GithubAuthProvider, signInWithPopup } from "firebase/auth";
 
 import { useRouter } from "next/router";
-import { auth } from "../../utils/firebaseConfig";
+import { auth } from "../../db/firebaseConfig";
+import { Context } from "../../contexts/ContextProvider";
 const provider = new GithubAuthProvider()
 
 export default function GithubButton() {
 
   const router = useRouter()
+  const {translation} = useContext(Context)
+
   const LoginWithGitHub = async () => {
     try {
       signInWithPopup(auth, provider)
@@ -31,7 +34,7 @@ export default function GithubButton() {
   return(
     <button onClick={LoginWithGitHub} className="flex flex-row items-center bg-white text-black rounded-md p-2 gap-1 outline-none hover:scale-105">
         <Image src={github} alt="GitHub Icon" height={0} width={0} style={{width:'25px', height:'auto'}}/>
-        <h2 className="text-[14px] font-medium">Login com GitHub</h2>
+        <h2 className="text-[14px] font-medium">{translation.login.github}</h2>
     </button>    
 )
 }

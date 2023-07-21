@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     reactStrictMode: true,
+
     images: {
         unoptimized:true,
         domains: [
@@ -8,6 +9,7 @@ const nextConfig = {
           "image.tmdb.org",
         ]
     },
+
     env: {
       TMDB_KEY: process.env.TMDB_KEY,
       apiKey: process.env.FIREBASE_API_KEY,
@@ -18,6 +20,17 @@ const nextConfig = {
       appId: process.env.APP_ID,
       measurementId: process.env.MEASUREMENT_ID,
       databaseURL: process.env.DATABASE_URL,
-    }
+    },
+    
+    async redirects() {
+      return [
+        {
+          source: '/',
+          destination: '/pt-br', // Redireciona o acesso à raiz para '/pt-br'
+          permanent: true,
+        },
+      ];
+    },
+
 }
 module.exports = nextConfig

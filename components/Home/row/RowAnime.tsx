@@ -2,7 +2,7 @@ import React, { useCallback, useContext, useState } from "react";
 import { IAnimes } from "../../../typing.d.ts.jsx";
 import Image from "next/image.js";
 import apiVariables from "../../../utils/apiVariables";
-import { Context } from "../../../contexts/ContextProvider";
+import { Context, ContextProvider } from "../../../contexts/ContextProvider";
 
 import { SlArrowRight, SlArrowLeft } from 'react-icons/sl'
 import { useRouter } from "next/router.js";
@@ -13,8 +13,7 @@ interface Props {
 }
 
 export default function RowAnime({ items, title }: Props) {
-
-    const { selectedAnime, setSelectedAnime } = useContext(Context)
+    const { selectedAnime, setSelectedAnime, language } = useContext(Context)
     const [scrollList,setScrollList] = useState(0)
     const base_url = apiVariables.images.base_url
     const size = apiVariables.images.poster_sizes
@@ -80,7 +79,7 @@ export default function RowAnime({ items, title }: Props) {
                         key={i.id}
                         src={`${poster}${i.poster_path}`} alt={i.name || i.title}
                         onMouseEnter={() => setSelectedAnimeCall(i)}
-                        onClick={() => router.push(`/${i.name? 'tv' : 'movie'}/details/${i.id}`)}
+                        onClick={() => router.push(`/${language}/${i.name? 'tv' : 'movie'}/details/${i.id}`)}
                     />
                 )}
                 </div>

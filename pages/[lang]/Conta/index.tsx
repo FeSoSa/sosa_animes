@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../utils/firebaseConfig";
+import { auth } from "../../../db/firebaseConfig";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import ExitButton from "../../components/Login/ExitButton";
+import ExitButton from "../../../components/Login/ExitButton";
 
 export default function Conta() {
 

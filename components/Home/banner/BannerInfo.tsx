@@ -5,11 +5,13 @@ import Genres from "./Genres";
 import Button from "./Button";
 import { Context } from "../../../contexts/ContextProvider";
 import FavoriteButton from "./FavoriteButton";
-import addToList from "../../../utils/addToList";
 import ModalButton from "./ModalButton";
 import Modal from "./Modal";
 import DetailButton from "./DetailButton";
 import { Translations } from "../../../constants/Translations";
+import { FavoriteClick, getList } from "../../../db/Controller";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../../db/firebaseConfig";
 
 interface Props {
     Anime: IAnimes
@@ -17,18 +19,21 @@ interface Props {
 
 export default function BannerInfo({ Anime }: Props) {
 
-    const { favorite, setFavorite } = useContext(Context)
+    const [ user ] = useAuthState(auth)
+    const { favorite, setFavorite, language, translation } = useContext(Context)
+    const [clickFavorite,setClickFavorite] = useState(false)
 
-    const {brLang} = useContext(Context)
-    const BR = Translations.BR.home
-    const ENG = Translations.ENG.home
-    const [selectedLang,setSelectedLang] = useState(BR)
+    const getFavorites = async () => {
+        if (user) {
+            const data = await getList(user);
+            setFavorite(data);
+        }
+    };
+
     useEffect(() => {
-        if(brLang){
-            setSelectedLang(BR)
-        }else{ setSelectedLang(ENG) }
-    },[brLang,selectedLang,BR,ENG])
-
+        getFavorites();
+    }, [user,clickFavorite]);
+    
     return (
         <section>
             <div style={{ height: 120, padding: 45 }}>
@@ -44,7 +49,7 @@ export default function BannerInfo({ Anime }: Props) {
 
             <div style={{ padding: 45 }}>
                 <div className="flex flex-row gap-2">
-                    <Stars stars={Anime.vote_average} /> <Genres genres={Anime.genre_ids} mediaType={Anime.name ? 'tv' : 'movie'} />
+                    <Stars stars={Anime.vote_average} /> <Genres genres={Anime.genre_ids} mediaType={Anime.name ? 'tv' : 'movie'} lang={language}/>
                 </div>
                 <div style={{ height: 120, width: 600, overflow: 'hidden', marginTop: 15 }}>
                     {Anime.overview.length > 300
@@ -54,17 +59,20 @@ export default function BannerInfo({ Anime }: Props) {
                 </div>
                 <div className="flex gap-5">
                     <div>
-                        <ModalButton TrailerID={Anime.id} color='yellow' text='white'>{selectedLang.trailer}</ModalButton>
+                        <ModalButton TrailerID={Anime.id} color='yellow' text='white'>{translation.geral.trailer}</ModalButton>
                     </div>
                     <div>
-                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">{selectedLang.details}</DetailButton>
+                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">{translation.geral.details}</DetailButton>
                     </div>
-                    <div>
+
+                    <div onClick={() => setClickFavorite(!clickFavorite)}>
+
                         <FavoriteButton
                             added={favorite && favorite.some((i) => i.id === Anime.id)}
-                            addToList={() => { addToList({ Anime, favorite, setFavorite }) }}
+                            addToList={() => {user&& FavoriteClick({Anime,user}) }}
                         />
                     </div>
+
                 </div>
             </div>
             <Modal ID={Anime.id} type={Anime.title?'movie':'tv'} name={Anime.title || Anime.name}/>

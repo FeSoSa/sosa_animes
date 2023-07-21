@@ -39,22 +39,22 @@ export interface IDetails {
     in_production: boolean
     languages: string[]
     last_air_date: Date | string
-    last_episode_to_air:LastEpisode
+    last_episode_to_air: LastEpisode
     name: string
-    title:string
-    networks:Networks[]
+    title: string
+    networks: Networks[]
     next_episode_to_air: null
     number_of_episodes: number
     origin_country: string[]
     original_language: string
     original_name: string
-    original_title:string
+    original_title: string
     overview: string
     popularity: number
     poster_path: string
-    production_countries:IPContries[]
-    seasons:ISeasons
-    spoken_languages:SpokenLang
+    production_countries: IPContries[]
+    seasons: ISeasons
+    spoken_languages: SpokenLang
     status: string
     tagline: string
     type: string
@@ -65,48 +65,48 @@ export interface IDetails {
     number_of_seasons: number
 }
 
-export interface SpokenLang{
-    english_name:string 
-    iso_639_1:string
-    name:string
+export interface SpokenLang {
+    english_name: string
+    iso_639_1: string
+    name: string
 }
 
-export interface ISeasons{
-    air_date:Date | string 
-    episode_count:number 
-    id:number 
-    name:string 
-    overview:string
-    poster_path:null
-    season_number:number
-    vote_average:number
+export interface ISeasons {
+    air_date: Date | string
+    episode_count: number
+    id: number
+    name: string
+    overview: string
+    poster_path: null
+    season_number: number
+    vote_average: number
 }
 
-export interface IPContries{
-    iso_3166_1:string 
-    name:string 
+export interface IPContries {
+    iso_3166_1: string
+    name: string
 }
 
-export interface Networks{
-    id:number 
-    logo_path:string 
-    name:string 
-    origin_country:string 
+export interface Networks {
+    id: number
+    logo_path: string
+    name: string
+    origin_country: string
 }
 
 export interface LastEpisode {
-    air_date:Date | number
-    episode_number:number
-    id:number
-    name:string
-    overview:string
-    production_code:string
-    runtime:number
-    season_number:number
-    show_id:number
-    still_path:string
-    vote_average:number
-    vote_count:number
+    air_date: Date | number
+    episode_number: number
+    id: number
+    name: string
+    overview: string
+    production_code: string
+    runtime: number
+    season_number: number
+    show_id: number
+    still_path: string
+    vote_average: number
+    vote_count: number
 }
 
 export interface IPCompany {
@@ -136,18 +136,20 @@ export interface IContext {
     setFavorite: Dispatch<SetStateAction<IAnimes[]>>
     openModal: boolean,
     setOpenModal: Dispatch<SetStateAction<boolean>>
-    brLang:boolean,
-    setBrLang: Dispatch<SetStateAction<boolean>>
+    language: string,
+    setLanguage: Dispatch<SetStateAction<string>>,
+    translation: TranslationsType,
+    setTranslation: Dispatch<SetStateAction<TranslationsType>>
 }
 
-export interface ISort{
-    value:string,
-    label:string
+export interface ISort {
+    value: string,
+    label: string
 }
-export interface IGenre{
-    name:string
-    value:string,
-    movie?:string
+export interface IGenre {
+    name: string
+    value: string,
+    movie?: string
 }
 
 
@@ -168,7 +170,7 @@ export interface IGenres {
     [key: string | number]: {
         name: string,
         id: number,
-        movie?:number
+        movie?: number
     }
 }
 
@@ -192,8 +194,56 @@ export const AnimeEmpty: IAnimes = {
 
 export interface IDs {
     [key: string | number]: {
-        name: string;
+        BRname: string;
+        ENGname: string;
         id: number;
         slug: string;
     };
+}
+
+export interface TranslationsType {
+    lang:string;
+    about: {
+      title: string;
+      tools: string;
+      contacts: string;
+      text:{
+        title:string,
+        text1:string[],
+        sub_title:string,
+        text2:string
+      }
+    };
+    nav: {
+      home: string;
+      favorite: string;
+      categories: string;
+      movies: string;
+      about: string;
+    };
+    geral: {
+        trailer:string,
+        details:string,
+        release:string,
+        season:string,
+        TvType:string,
+        MovieType:string,
+        favorites:string,
+        exit:string,
+        footer:string,
+    };
+    genres:{
+        trending:string,
+        action:string,
+        drama:string,
+        comedy:string,
+        fiction:string,
+        mistery:string,
+        movies:string
+    }
+    login:{
+        login:string,
+        google:string,
+        github:string
+    }
 }

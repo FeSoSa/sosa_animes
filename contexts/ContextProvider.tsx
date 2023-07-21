@@ -1,5 +1,8 @@
 import { ReactNode, createContext, useState } from "react";
 import { IAnimes, IContext } from "../typing.d.ts";
+import { Translations } from "../constants/Translations";
+
+const BR = Translations.BR
 
 const InitialValue:IContext = {
     selectedAnime: undefined,
@@ -12,8 +15,10 @@ const InitialValue:IContext = {
     setFavorite:() => {},
     openModal:false,
     setOpenModal:() => {},
-    brLang:true,
-    setBrLang:() => {}
+    language:'pt-br',
+    setLanguage:() => {},
+    translation:BR,
+    setTranslation:() => {}
 }
 
 interface Props{
@@ -28,7 +33,9 @@ export function ContextProvider({children}:Props){
     const [navBlack,setNavBlack] = useState(false)
     const [favorite,setFavorite] = useState<IAnimes[]>([])
     const [openModal,setOpenModal] = useState(false)
-    const [brLang,setBrLang] = useState(true)
+    const [language,setLanguage] = useState('pt-br')
+    const [translation, setTranslation] = useState(BR)
+    
     return(
         <Context.Provider
         value={{
@@ -42,8 +49,10 @@ export function ContextProvider({children}:Props){
             setFavorite,
             openModal,
             setOpenModal,
-            brLang,
-            setBrLang
+            language,
+            setLanguage,
+            translation,
+            setTranslation
         }}
         >
             {children}

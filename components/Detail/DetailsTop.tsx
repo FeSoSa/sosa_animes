@@ -7,17 +7,20 @@ import { banner } from "../../utils/apiVariables";
 import ModalButton from "../Home/banner/ModalButton";
 import FavoriteButton from "../Home/banner/FavoriteButton";
 import { Context } from "../../contexts/ContextProvider";
-import addToList from "../../utils/addToList";
 import Modal from "../Home/banner/Modal";
+import { FavoriteClick, getList } from "../../db/Controller";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../../db/firebaseConfig";
 
 interface Props {
   Anime: IAnimes;
 }
 
 export default function DetailsTop({ Anime }: Props) {
-  const { favorite, setFavorite } = useContext(Context);
-
+  const { favorite, setFavorite, translation,language } = useContext(Context);
+  const [user] = useAuthState(auth)
   const [genreID, setGenreID] = useState<number[]>([]);
+  const [clickFavorite,setClickFavorite] = useState(false)
 
   const getIDS = () => {
     Anime.genres?.forEach((genre) => {
@@ -30,12 +33,23 @@ export default function DetailsTop({ Anime }: Props) {
     });
   };
 
+  const getFavorites = async () => {
+    if (user) {
+        const data = await getList(user);
+        setFavorite(data);
+    }
+};
+
   useEffect(() => {
     // Atualiza os IDs dos gêneros quando os gêneros do anime são alterados
     if (Anime.genres) {
       getIDS();
     }
-  }, [Anime.genres ,getIDS]);
+  }, [Anime.genres]);
+
+  useEffect(() => {
+    getFavorites();
+}, [user,clickFavorite]);
 
   return (
     <main className="p-10 bg-black bg-opacity-75">
@@ -47,9 +61,9 @@ export default function DetailsTop({ Anime }: Props) {
               {/* Exibe o nome do anime ou título */}
               <span className="text-4xl pr-2">{Anime.name || Anime.title}</span>
               {Anime.name ? (
-                <span className="text-[gray]">Série de TV</span>
+                <span className="text-[gray]">{translation.geral.TvType}</span>
               ) : (
-                <span className="text-[gray]">Filme</span>
+                <span className="text-[gray]">{translation.geral.MovieType}</span>
               )}
             </div>
             {/* Exibe o nome original do anime ou título original */}
@@ -62,6 +76,7 @@ export default function DetailsTop({ Anime }: Props) {
             <Stars stars={Anime.vote_average} />
             {/* Exibe os gêneros */}
             <Genres
+            lang={language}
               genres={genreID}
               mediaType={Anime.name ? "tv" : "movie"}
             />
@@ -71,13 +86,13 @@ export default function DetailsTop({ Anime }: Props) {
               {/* Exibe o número de temporadas */}
               {Anime.number_of_seasons}{" "}
               {Anime.number_of_seasons && Anime.number_of_seasons > 1
-                ? "Temporadas"
-                : "Temporada"}
+                ? `${translation.geral.season}s`
+                : translation.geral.season}
             </p>
           )}
           <p className="text-[gray]">
             {/* Exibe a data de lançamento */}
-            Lançado em{" "}
+            {`${translation.geral.release} `}
             {Anime.name
               ? String(Anime.first_air_date).slice(0, 4)
               : String(Anime.release_date).slice(0, 4)}
@@ -86,18 +101,18 @@ export default function DetailsTop({ Anime }: Props) {
             <div className="flex gap-5">
               {/* Botão para abrir o modal de trailers */}
               <ModalButton TrailerID={Anime.id} color="yellow" text="white">
-                Ver Trailers
+                {translation.geral.trailer}
               </ModalButton>
               {/* Botão de favoritos */}
-              <FavoriteButton
-                added={
-                  favorite && favorite.some((i) => i.id === Anime.id)
-                }
-                // Função para adicionar o anime à lista de favoritos
-                addToList={() => {
-                  addToList({ Anime, favorite, setFavorite });
-                }}
-              />
+
+              <div onClick={() => setClickFavorite(!clickFavorite)}>
+
+                <FavoriteButton
+                  added={favorite && favorite.some((i) => i.id === Anime.id)}
+                  addToList={() => { user && FavoriteClick({ Anime, user }) }}
+                />
+              </div>
+
             </div>
             {Anime.production_companies &&
               Anime.production_companies[0].logo_path && (

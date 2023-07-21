@@ -1,10 +1,12 @@
-import React from "react";
-import { auth } from "../../utils/firebaseConfig";
+import React, { useContext } from "react";
+import { auth } from "../../db/firebaseConfig";
 import { signOut } from "firebase/auth";
 import { useRouter } from "next/router";
+import { Context } from "../../contexts/ContextProvider";
 
 export default function ExitButton() {
 
+    const {translation} = useContext(Context)
     const router = useRouter()
     const Exit = async () => {
         signOut(auth).then(() => {
@@ -16,7 +18,7 @@ export default function ExitButton() {
 
     return (
         <button onClick={Exit} className="bg-red p-2 rounded-md hover:scale-105">
-            SAIR
+            {translation.geral.exit}
         </button>
     )
 }
