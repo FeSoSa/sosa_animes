@@ -12,12 +12,12 @@ const provider = new GoogleAuthProvider()
 export default function GoogleButton() {
 
   const router = useRouter()
-  const {translation} = useContext(Context)
+  const {translation,language} = useContext(Context)
 
   const LoginWithGoogle = async () => {
     try {
       signInWithPopup(auth, provider)
-        .then( (res) => res.user && router.push('/').catch( (err) => {console.log(err)} ) )
+        .then( (res) => res.user && router.push(`/${language}`).catch( (err) => {console.log(err)} ) )
     } catch (error: any) {
       // Handle Errors here.
       const errorCode = error.code;

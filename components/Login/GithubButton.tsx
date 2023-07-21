@@ -12,12 +12,12 @@ const provider = new GithubAuthProvider()
 export default function GithubButton() {
 
   const router = useRouter()
-  const {translation} = useContext(Context)
+  const {translation,language} = useContext(Context)
 
   const LoginWithGitHub = async () => {
     try {
       signInWithPopup(auth, provider)
-        .then( (res) => res.user && router.push('/').catch( (err) => {console.log(err)} ) )
+        .then( (res) => res.user && router.push(`/${language}`).catch( (err) => {console.log(err)} ) )
     } catch (error: any) {
       // Handle Errors here.
       const errorCode = error.code;
