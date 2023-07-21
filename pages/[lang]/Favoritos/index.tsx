@@ -12,7 +12,7 @@ import { Context } from "../../../contexts/ContextProvider";
 
 export default function Favoritos() {
 
-    const { favorite, setFavorite, translation } = useContext(Context)
+    const { favorite, setFavorite, translation,language } = useContext(Context)
     const base_url = apiVariables.images.base_url
     const size = apiVariables.images.poster_sizes
     const poster = `${base_url}${size[3]}`;
@@ -43,7 +43,7 @@ export default function Favoritos() {
             <div className="w-screen h-screen">
                 <div className="flex justify-center p-5 gap-7  flex-wrap">
                     {favorite.map((i) => (
-                        <Link href={`/${i.name ? 'tv' : 'movie'}/details/${i.id}`} key={i.id}>
+                        <Link href={`/${language}/${i.name ? 'tv' : 'movie'}/details/${i.id}`} key={i.id}>
                             <Image
                                 priority
                                 className="transition-all duration-200 hover:scale-105 rounded-xl shadow-white hover:shadow hover:border-yellow border-2 border-transparent"
