@@ -6,11 +6,11 @@ import { Context } from "../../contexts/ContextProvider";
 
 export default function ExitButton() {
 
-    const {translation} = useContext(Context)
+    const {translation,language} = useContext(Context)
     const router = useRouter()
     const Exit = async () => {
         signOut(auth).then(() => {
-            router.push('/Login')
+            router.push(`${language}/Login`)
         }).catch((error) => {
             console.log(`Unable to log out:${error}`)
         });

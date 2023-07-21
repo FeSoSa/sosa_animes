@@ -1,19 +1,21 @@
-import React, { useEffect } from "react";
+import React, { useContext, useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../../db/firebaseConfig";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import ExitButton from "../../../components/Login/ExitButton";
+import { Context } from "../../../contexts/ContextProvider";
 
 export default function Conta() {
 
     const [user, loading] = useAuthState(auth)
     const router = useRouter()
+    const {language} = useContext(Context)
 
     useEffect(() => {
         if (!loading && !user) {
 
-            router.replace('/Login')
+            router.replace(`/${language}/Login`)
         }
     }, [loading, user])
 
