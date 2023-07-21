@@ -42,8 +42,8 @@ export default function Sobre() {
 
                     <h2 className="font-bold text-lg p-2 text-yellow">{translation.about.text.title}</h2>
                     <ul className="list-disc list-inside flex flex-col gap-2">
-                        {translation.about.text.text1.map((i) => 
-                            <li>{i}</li>
+                        {translation.about.text.text1.map((i,index) => 
+                            <li key={index}>{i}</li>
                         )}
                     </ul>
                     <h2 className="font-bold text-lg p-2 text-yellow">{translation.about.text.sub_title}</h2>
