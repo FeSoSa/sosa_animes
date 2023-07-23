@@ -10,7 +10,7 @@ export default function ExitButton() {
     const router = useRouter()
     const Exit = async () => {
         signOut(auth).then(() => {
-            router.push(`${language}/Login`)
+            router.push(`/${language}/Login`)
         }).catch((error) => {
             console.log(`Unable to log out:${error}`)
         });

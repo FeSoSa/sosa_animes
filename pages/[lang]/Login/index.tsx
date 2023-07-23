@@ -84,10 +84,10 @@ export default function Login() {
                     transition: "background-image 1000ms ease-in-out",
                 }}
             >
-                <div className="bg-black bg-opacity-75 flex justify-around items-center w-full h-full">
+                <div className="bg-black bg-opacity-75 flex justify-around items-center w-full h-full max-md:flex-col">
                     <Image src={Icon} width={0} height={0} alt="Icon" style={{ width: 350, height: 'auto' }} />
                     <div className="bg-[#333333] rounded-2xl p-10 flex flex-col items-center gap-5 border-2 border-[#222222]
-                transition-all hover:border-yellow duration-500
+                transition-all hover:border-yellow duration-500 
             ">
                         <h1 className="font-bold text-4xl">{translation.login.login}</h1>
                         <GoogleButton />
@@ -96,10 +96,10 @@ export default function Login() {
                     <Switch
                         checked={switchLang}
                         onChange={setSwitchLang}
-                        className={`absolute top-1 left-3 mt-4 inline-flex h-[30px] w-[62px] shrink-0 cursor-pointer
+                        className={`lg:absolute top-1 left-3 mt-4 inline-flex h-[30px] w-[62px] shrink-0 cursor-pointer
                             rounded-full border-2 border-transparent transition-all duration-500 ease-in-out 
                             focus:outline-none focus-visible:ring-2  focus-visible:ring-white 
-                            focus-visible:ring-opacity-75 bg-white`}
+                            focus-visible:ring-opacity-75 bg-white  max-md:flex`}
                     >
                         <span
                             aria-hidden="true"
