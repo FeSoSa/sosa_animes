@@ -16,7 +16,7 @@ export default function MainContainer({
   return (
     <main>  
         <BannerHome Banner={Banner}/>
-        <div style={{marginTop:-220}}>
+        <div className="mt-[-220px]">
           {Animes.map(i => <RowAnime items={i[0]} key={i[1]} title={i[1]}/>)}
         </div>
     </main>

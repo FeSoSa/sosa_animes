@@ -72,10 +72,14 @@ export default function Modal({ ID, type, name }: Props) {
     <>
       {openModal && (
         <section className="bg-black fixed top-0 bottom-0 left-0 right-0 bg-opacity-75 z-[98]">
-          <section className="flex fixed justify-center items-center top-0 left-0 bottom-0 right-0 ">
-            <div className="w-[840px] h-[560px] bg-dark_gray border-2 border-yellow bg-opacity-[80%] flex flex-col rounded-b-2xl rounded-t-md">
+          <section className="flex fixed justify-center items-center top-0 left-0 bottom-0 right-0 max-md:mt-[-60%]">
+            <div className="w-[840px] h-[560px] bg-dark_gray border-2 border-yellow bg-opacity-[80%] flex flex-col rounded-b-2xl rounded-t-md
+            max-md:w-[350px] max-md:h-[255px]
+            ">
               {/* Cabeçalho */}
-              <header className="bg-yellow w-[836px] h-[3rem] mb-16 justify-between flex items-center p-2 text-md font-bold">
+              <header className="bg-yellow w-[836px] h-[3rem] mb-16 justify-between flex items-center p-2 text-md font-bold
+              max-md:w-[346px] max-md:mb-8
+              ">
                 <p>{name}</p>
                 <IoCloseSharp style={{ fontSize: 30 }} className="cursor-pointer text-white hover:text-red " onClick={() => closeModal()} />
               </header>
@@ -91,7 +95,7 @@ export default function Modal({ ID, type, name }: Props) {
                 {selectedTrailer && (
                   <iframe
                     id="modal-video"
-                    className="w-[640px] h-[360px] rounded"
+                    className="w-[640px] h-[360px] rounded max-md:h-auto"
                     src={`https://www.youtube.com/embed/${selectedTrailer[selectNum].key}`}
                     title={selectedTrailer[selectNum].type}
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

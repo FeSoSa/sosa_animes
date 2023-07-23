@@ -26,7 +26,7 @@ export default function SelectGenre({ genre, setGenre, lang }: Props) {
 
   return (
     <div>
-      <RadioGroup value={genre} onChange={setGenre} className="w-[14rem]">
+      <RadioGroup value={genre} onChange={setGenre} className="w-[14rem] max-md:w-[9rem]">
         <RadioGroup.Label>{lang == 'pt-BR' ? 'Generos:' : 'Genres:'}</RadioGroup.Label>
 
         {selectedLang.map((i, index) =>

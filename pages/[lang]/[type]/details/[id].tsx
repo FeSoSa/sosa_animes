@@ -47,7 +47,7 @@ export default function Details() {
             <div className="detail-gradient" />
           </div>
 
-          <section className="mt-[-50vh]">
+          <section className="mt-[-50vh] max-md:mt-[-60vh]">
             <DetailsTop Anime={selectedAnime} />
           </section>
 

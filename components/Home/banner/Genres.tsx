@@ -11,9 +11,9 @@ export default function Genres({ genres, mediaType, lang }: Props) {
     return (
         <>
             {genres && genres.length > 0 && (
-                <div className="flex justify-center sm:justify-start gap-1">
+                <div className="flex justify-center gap-1 items-center max-md:flex-col">
                     {genres.map((item, i, arr) => (
-                        <span key={i} className="text-yellow font-bold" style={{ lineHeight: 1 }}>
+                        <span key={i} className="text-yellow font-bold leading-1">
                             {`${mediaType === "movie"
                                 ? lang === 'pt-br'
                                     ? movieGenres[item].BRname

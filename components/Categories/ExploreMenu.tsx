@@ -17,9 +17,14 @@ export default function ExploreMenu({sort, setSort, search, setSearch,  genre, s
 
     const {translation} = useContext(Context)
   return (
-    <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col">
+    <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col
+    max-md:w-[20vh]
+    ">
       <input
-        className="bg-white text-black text-xl h-[3.5rem] w-[14rem] rounded mt-2 outline-none p-2 text-wrap flex overflow-auto"
+        className="bg-white text-black text-xl h-[3.5rem] w-[14rem] rounded mt-2 
+        outline-none p-2 text-wrap flex overflow-auto
+        max-md:w-[9rem]
+        "
         type="search"
         value={search}
         onChange={(e) => setSearch(e.target.value)}

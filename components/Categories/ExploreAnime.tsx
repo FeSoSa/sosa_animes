@@ -58,8 +58,10 @@ export default function ExploreAnime({ type, page, genre, sort, search, lang, se
   return (
     <section
       ref={setRef}
-      className="transition-all duration-500 w-64vh mt-[4rem] ml-[36vh] min-h-screen p-10 flex flex-row flex-wrap gap-10 justify-center items-center"
-    >
+      className="
+      transition-all duration-500 w-64vh mt-[4rem] ml-[36vh] min-h-screen p-10 flex flex-row flex-wrap gap-10 justify-center items-center
+      max-md:ml-[20vh] max-md:mt-[3rem]
+      ">
       {animeList.map((anime) => (
         <Image
           style={{ width: 160, height: 'auto' }}

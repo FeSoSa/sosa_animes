@@ -21,7 +21,7 @@ export default function Sobre() {
     };
 
     return (
-        <div className="w-screen min-h-screen grid grid-rows-1 grid-cols-3">
+        <div className="w-screen min-h-screen grid grid-rows-1 grid-cols-3 max-md:grid-rows-3 max-md:grid-cols-1">
             <section className="flex items-center flex-col w-full">
                 <div className="bg-yellow p-3 rounded w-fit mt-[4rem]">
                     <h1 className=" text-4xl font-bold">

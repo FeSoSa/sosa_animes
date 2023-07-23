@@ -17,10 +17,10 @@ interface Props {
 }
 
 export default function DetailsTop({ Anime }: Props) {
-  const { favorite, setFavorite, translation,language } = useContext(Context);
+  const { favorite, setFavorite, translation, language } = useContext(Context);
   const [user] = useAuthState(auth)
   const [genreID, setGenreID] = useState<number[]>([]);
-  const [clickFavorite,setClickFavorite] = useState(false)
+  const [clickFavorite, setClickFavorite] = useState(false)
 
   const getIDS = () => {
     Anime.genres?.forEach((genre) => {
@@ -35,10 +35,10 @@ export default function DetailsTop({ Anime }: Props) {
 
   const getFavorites = async () => {
     if (user) {
-        const data = await getList(user);
-        setFavorite(data);
+      const data = await getList(user);
+      setFavorite(data);
     }
-};
+  };
 
   useEffect(() => {
     // Atualiza os IDs dos gêneros quando os gêneros do anime são alterados
@@ -49,15 +49,17 @@ export default function DetailsTop({ Anime }: Props) {
 
   useEffect(() => {
     getFavorites();
-}, [user,clickFavorite]);
+  }, [user, clickFavorite]);
 
   return (
     <main className="p-10 bg-black bg-opacity-75">
       <span></span>
-      <section className="flex flex-row">
-        <div className="w-[50%] border-r-2 border-yellow flex flex-col gap-2">
-          <div>
-            <div>
+      <section className="flex flex-row max-md:flex-col">
+        <div className="w-[50%] border-r-2 border-yellow flex flex-col gap-2
+          max-md:border-none max-md:w-[100%] max-md:gap-3 max-md:items-center
+        ">
+          <div className="max-md:flex max-md:flex-col max-md:items-center">
+            <div >
               {/* Exibe o nome do anime ou título */}
               <span className="text-4xl pr-2">{Anime.name || Anime.title}</span>
               {Anime.name ? (
@@ -71,12 +73,14 @@ export default function DetailsTop({ Anime }: Props) {
               {Anime.original_name || Anime.original_title}
             </h2>
           </div>
-          <div className="flex-row flex gap-2">
+          <div className="flex-row flex gap-2 
+            max-md:items-center max-md:gap-10
+          ">
             {/* Exibe as estrelas de avaliação */}
             <Stars stars={Anime.vote_average} />
             {/* Exibe os gêneros */}
             <Genres
-            lang={language}
+              lang={language}
               genres={genreID}
               mediaType={Anime.name ? "tv" : "movie"}
             />
@@ -97,7 +101,7 @@ export default function DetailsTop({ Anime }: Props) {
               ? String(Anime.first_air_date).slice(0, 4)
               : String(Anime.release_date).slice(0, 4)}
           </p>
-          <div className="flex justify-between items-center">
+          <div className="flex justify-between items-center max-md:gap-5">
             <div className="flex gap-5">
               {/* Botão para abrir o modal de trailers */}
               <ModalButton TrailerID={Anime.id} color="yellow" text="white">
@@ -116,26 +120,25 @@ export default function DetailsTop({ Anime }: Props) {
             </div>
             {Anime.production_companies &&
               Anime.production_companies[0].logo_path && (
-                <div className="bg-white rounded p-2 mr-10">
+                <div className="bg-white rounded p-2 mr-10 max-md:mr-0">
                   <Image
                     src={`${banner}${Anime.production_companies[0].logo_path}`}
                     alt={Anime.production_companies && Anime.production_companies[0].name ? Anime.production_companies[0].name : ""}
-                    width={0} height={0} style={{ width: 125 }}
+                    width={0} height={0}
+                    className="w-[125px] "
                   />
                 </div>
               )
             }
           </div>
         </div>
-        <div className="max-w-[50%] pl-5">
+        <div className="w-[50%] pl-5 max-md:w-[100%] max-md:text-center max-md:pt-5">
           {Anime.overview}
         </div>
 
       </section>
 
-      <section className="flex justify-center pt-10 pb-2 ">
 
-      </section>
       <Modal ID={Anime.id} name={Anime.name ? Anime.name : Anime.title} type={Anime.name ? 'tv' : 'movie'} />
     </main>
   );

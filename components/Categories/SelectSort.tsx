@@ -24,12 +24,12 @@ export default function SelectSort({ setSort, sort, lang }: Props) {
     const name = selectedLang.find((option) => option.value === sort)
 
     return (
-        <div className="w-[14rem]  text-black mt-2">
+        <div className="w-[14rem]  text-black mt-2 max-md:w-[9rem]">
             <span
                 className={`relative flex h-[2.5rem] items-center justify-between p-2  bg-white rounded cursor-pointer
                 before:absolute before:content-['Ordenar_por'] before:-top-3
                 before:text-sm before:bg-black before:px-1 before:py-0 
-                before:font-thin before:text-white before:rounded hover:bg-gray focus:border-2`}
+                before:font-thin before:text-white before:rounded hover:bg-gray focus:border-2 max-md:text-sm`}
                 onBlur={() => openSelect == true && setOpenSelect(!openSelect)}
                 onClick={() => setOpenSelect(!openSelect)}
                 tabIndex={0}
@@ -49,7 +49,7 @@ export default function SelectSort({ setSort, sort, lang }: Props) {
                 leaveTo="opacity-0 scale-70 "
                 className="flex justify-center"
             >
-                <div className="bg-white rounded mt-2 flex flex-col absolute w-[12rem] text-center">
+                <div className="bg-white rounded mt-2 flex flex-col absolute w-[12rem] text-center max-md:w-[9rem]">
 
                     {
 

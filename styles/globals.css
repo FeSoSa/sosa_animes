@@ -81,12 +81,16 @@ body {
   position: absolute;
   z-index: 40;
   display: flex;
-  opacity: 0;
+  opacity: 1;
   justify-content: center;
   vertical-align: middle;
   align-items: center;
   margin-top: 14px;
   height:165px;
+
+  @media (min-width: 768px){
+    opacity: 0;
+  }
 }
 .rotate-favorite{
   transform: rotate(0);
@@ -100,9 +104,11 @@ body {
 }
 
 .AnimeRow:hover{
-  transition: all ease 1s;
-  .Arrow{
-    opacity: 1;
+  @media (min-width: 768px){
+    transition: all ease 1s;
+    .Arrow{
+      opacity: 1;
+    }
   }
 }
 

@@ -19,9 +19,9 @@ interface Props {
 
 export default function BannerInfo({ Anime }: Props) {
 
-    const [ user ] = useAuthState(auth)
+    const [user] = useAuthState(auth)
     const { favorite, setFavorite, language, translation } = useContext(Context)
-    const [clickFavorite,setClickFavorite] = useState(false)
+    const [clickFavorite, setClickFavorite] = useState(false)
 
     const getFavorites = async () => {
         if (user) {
@@ -32,50 +32,61 @@ export default function BannerInfo({ Anime }: Props) {
 
     useEffect(() => {
         getFavorites();
-    }, [user,clickFavorite]);
-    
+    }, [user, clickFavorite]);
+
     return (
         <section>
-            <div style={{ height: 120, padding: 45 }}>
+            <div className="
+            flex items-center text-[40px] font-bold pt-[50px] mb-5 px-[50px] w-[750px] h-[150px]
+            max-md:w-[390px] max-md:px-[20px] max-md:text-center max-md:text-[35px] max-md:mb-0 max-md:max-h-[250px]
+            ">
                 {Anime?.name?.length < 35 || Anime?.title?.length < 35
                     ? Anime?.name == null || undefined
-                        ? <h2 style={{ fontSize: 40, width: 650, paddingTop: 25, fontWeight: 'bold' }}>{Anime?.title}</h2>
-                        : <h2 style={{ fontSize: 40, width: 650, paddingTop: 25, fontWeight: 'bold' }}>{Anime?.name}</h2>
+                        ? <h2>{Anime?.title}</h2>
+                        : <h2>{Anime?.name}</h2>
                     : Anime?.name == null || undefined
-                        ? <h2 style={{ fontSize: 40, width: 650, fontWeight: 'bold' }}>{Anime?.title?.slice(0, 60)}</h2>
-                        : <h2 style={{ fontSize: 40, width: 650, fontWeight: 'bold' }}>{Anime?.name?.slice(0, 60)}</h2>
+                        ? <h2>{Anime?.title?.slice(0, 60)}</h2>
+                        : <h2>{Anime?.name?.slice(0, 60)}</h2>
                 }
             </div>
 
-            <div style={{ padding: 45 }}>
-                <div className="flex flex-row gap-2">
-                    <Stars stars={Anime.vote_average} /> <Genres genres={Anime.genre_ids} mediaType={Anime.name ? 'tv' : 'movie'} lang={language}/>
+            <div className="
+            px-[55px] pb-[45px] 
+            max-md:w-[390px] max-md:px-[20px] max-md:pt-2
+            ">
+                <div className="flex flex-row gap-2
+                max-md:flex-col max-md:items-center
+                ">
+                    <Stars stars={Anime.vote_average} /> <Genres genres={Anime.genre_ids} mediaType={Anime.name ? 'tv' : 'movie'} lang={language} />
                 </div>
-                <div style={{ height: 120, width: 600, overflow: 'hidden', marginTop: 15 }}>
+                <div className="
+                h-[120px] w-[600px] overflow-hidden mt-[15px]
+                max-md:w-[350px] max-md:text-center max-md:h-[170px] max-md:mb-[15px]
+                ">
                     {Anime.overview.length > 300
                         ? Anime.overview.slice(0, 300) + '...'
                         : Anime.overview
                     }
                 </div>
-                <div className="flex gap-5">
+                <div className="flex gap-5 max-md:gap-3 max-md:justify-center items-center">
                     <div>
                         <ModalButton TrailerID={Anime.id} color='yellow' text='white'>{translation.geral.trailer}</ModalButton>
                     </div>
                     <div>
-                        <DetailButton type={Anime.title? 'movie' : 'tv'} id={Anime.id} color='black' text="white">{translation.geral.details}</DetailButton>
+                        <DetailButton type={Anime.title ? 'movie' : 'tv'} id={Anime.id} color='black' text="white">{translation.geral.details}</DetailButton>
                     </div>
 
                     <div onClick={() => setClickFavorite(!clickFavorite)}>
 
                         <FavoriteButton
                             added={favorite && favorite.some((i) => i.id === Anime.id)}
-                            addToList={() => {user&& FavoriteClick({Anime,user}) }}
+                            addToList={() => { user && FavoriteClick({ Anime, user }) }}
                         />
                     </div>
 
                 </div>
             </div>
-            <Modal ID={Anime.id} type={Anime.title?'movie':'tv'} name={Anime.title || Anime.name}/>
+            <Modal ID={Anime.id} type={Anime.title ? 'movie' : 'tv'} name={Anime.title || Anime.name} />
         </section>
     )
 }

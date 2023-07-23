@@ -4,6 +4,9 @@ import { banner } from "../../../utils/apiVariables";
 import NotFound from "../../../public/assets/NotFound.png";
 import { Context } from "../../../contexts/ContextProvider";
 import BannerInfo from "./BannerInfo";
+import Image from "next/image.js";
+
+import Icon from '../../../public/assets/AnimeIcon.png'
 
 interface Props {
   Banner: IAnimes[];
@@ -60,6 +63,9 @@ export default function BannerHome({ Banner }: Props) {
             </div>
           </div>
         </div>
+        <Image src={Icon} width={0} height={0} alt="Icon SosaAnime"
+        className="absolute top-0 z-99 right-0 m-2 w-[75px] max-md:w-[50px]"
+        />
       </header>
     </>
   );
