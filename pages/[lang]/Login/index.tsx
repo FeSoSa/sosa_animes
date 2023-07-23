@@ -85,14 +85,6 @@ export default function Login() {
                 }}
             >
                 <div className="bg-black bg-opacity-75 flex justify-around items-center w-full h-full max-md:flex-col">
-                    <Image src={Icon} width={0} height={0} alt="Icon" style={{ width: 350, height: 'auto' }} />
-                    <div className="bg-[#333333] rounded-2xl p-10 flex flex-col items-center gap-5 border-2 border-[#222222]
-                transition-all hover:border-yellow duration-500 
-            ">
-                        <h1 className="font-bold text-4xl">{translation.login.login}</h1>
-                        <GoogleButton />
-                        <GithubButton />
-                    </div>
                     <Switch
                         checked={switchLang}
                         onChange={setSwitchLang}
@@ -109,6 +101,14 @@ export default function Login() {
                             duration-200 ease-in-out`}
                         />
                     </Switch>
+                    <Image src={Icon} width={0} height={0} alt="Icon" style={{ width: 350, height: 'auto' }} />
+                    <div className="bg-[#333333] rounded-2xl p-10 flex flex-col items-center gap-5 border-2 border-[#222222]
+                transition-all hover:border-yellow duration-500 
+            ">
+                        <h1 className="font-bold text-4xl">{translation.login.login}</h1>
+                        <GoogleButton />
+                        <GithubButton />
+                    </div>
                 </div>
             </main>
         </>
