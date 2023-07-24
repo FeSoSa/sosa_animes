@@ -2,6 +2,8 @@
 
 <img src="Tela.png" alt="Tela do Sosa Animes"/>
 
+Vamos juntos explorar o fascinante mundo dos Animes? Acesse agora mesmo o Sosa Animes e viva emoções que vão além da imaginação! [[clique aqui](https://sosa-movie.vercel.app)]
+
 ## Visão Geral
 Bem-vindo ao Sosa Animes, o portal definitivo para os amantes de Animes! Este projeto foi desenvolvido com paixão e dedicação para proporcionar uma experiência emocionante e cativante aos entusiastas de animações japonesas. Aqui você encontrará uma vasta coleção de listas de Animes, trailers eletrizantes e a possibilidade de salvar seus títulos favoritos. Vamos juntos embarcar em uma jornada pelo universo animado?
 
@@ -38,7 +40,5 @@ Sua contribuição é mais que bem-vinda! Se você é um entusiasta de Animes ou
 Olá! Meu nome é [Seu Nome], sou apaixonado por Animes e desenvolvimento web. O Sosa Animes foi criado como um projeto pessoal de aprendizado e paixão. Espero que você se divirta navegando no Sosa Animes tanto quanto eu me diverti construindo-o. Caso queira me contatar ou saber mais sobre meus projetos, não hesite em me encontrar no LinkedIn ou em meu site pessoal.
 
 ---
-
-Vamos juntos explorar o fascinante mundo dos Animes? Acesse agora mesmo o Sosa Animes e viva emoções que vão além da imaginação! [[clique aqui](https://sosa-movie.vercel.app)]
 
 #SosaAnimes #Animes #NextJs #Firebase #TMDB #DesenvolvimentoWeb #PaixãoPorAnimes #Trailers #Favoritos #ExperiênciaDoUsuário #Responsividade #Inovação #MaratonaDeAnimes #GitHub #DesenvolvedorWeb
