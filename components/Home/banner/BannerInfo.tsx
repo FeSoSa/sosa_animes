@@ -37,8 +37,8 @@ export default function BannerInfo({ Anime }: Props) {
     return (
         <section>
             <div className="
-            flex items-center text-[40px] font-bold pt-[50px] mb-5 px-[50px] w-[750px] h-[150px]
-            max-md:w-[390px] max-md:px-[20px] max-md:text-center max-md:text-[35px] max-md:mb-0 max-md:max-h-[250px]
+            flex items-center text-[40px] font-bold pt-[50px] mb-5 px-[50px] w-[750px] 
+            max-md:w-[390px] max-md:px-[20px] max-md:text-center max-md:text-[35px] max-md:mb-0 
             ">
                 {Anime?.name?.length < 35 || Anime?.title?.length < 35
                     ? Anime?.name == null || undefined
