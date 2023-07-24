@@ -39,6 +39,6 @@ Olá! Meu nome é [Seu Nome], sou apaixonado por Animes e desenvolvimento web. O
 
 ---
 
-Vamos juntos explorar o fascinante mundo dos Animes? Acesse agora mesmo o Sosa Animes e viva emoções que vão além da imaginação! 🔗 [Inserir link do site]
+Vamos juntos explorar o fascinante mundo dos Animes? Acesse agora mesmo o Sosa Animes e viva emoções que vão além da imaginação! [[clique aqui](https://sosa-movie.vercel.app)]
 
 #SosaAnimes #Animes #NextJs #Firebase #TMDB #DesenvolvimentoWeb #PaixãoPorAnimes #Trailers #Favoritos #ExperiênciaDoUsuário #Responsividade #Inovação #MaratonaDeAnimes #GitHub #DesenvolvedorWeb
