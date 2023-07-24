@@ -18,3 +18,12 @@ O projeto faz consumo da API do TMDB para retirar os dados dos Animes.
 * Sistema de favoritos que salva mesmo após fechar a página
 * Sistema de Procura com filtros da maioria dos Animes e filmes de Animação disponíveis
 * Página de Detalhes sobre o Anime
+
+# Tecnologias usadas
+
+* NextJs
+* Typescript
+* Tailwind
+* Firebase
+* Framer-motion
+* TMDB API
