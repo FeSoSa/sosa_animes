@@ -35,7 +35,7 @@ body {
 
 .bg-principal {
   height: 100%;
-  background-color:#222222;
+  background-color:#000;
   background-size: contain;
   background-position: center;
   background-repeat: repeat-y;
@@ -45,7 +45,7 @@ body {
 .detail-gradient{
   width: inherit;
   height: inherit;
-  background: linear-gradient(to right, #222222 , transparent 90%);
+  background: linear-gradient(to right, #000 , transparent 90%);
 }
 
 .other-gradient{
@@ -57,13 +57,13 @@ body {
 .gradient-v {
   width: inherit;
   height: inherit;
-  background: linear-gradient(to top, #222222 5%, transparent 10%);
+  background: linear-gradient(to top, #000 5%, transparent 10%);
 }
 
 .gradient-h {
   width: inherit;
   height: inherit;
-  background: linear-gradient(to right, #222222 1%, transparent 60%);
+  background: linear-gradient(to right, #000 1%, transparent 60%);
 }
 
 .scroll-gradient{
@@ -86,7 +86,6 @@ body {
   vertical-align: middle;
   align-items: center;
   margin-top: 14px;
-  height:165px;
 
   @media (min-width: 768px){
     opacity: 0;

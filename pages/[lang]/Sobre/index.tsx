@@ -21,8 +21,8 @@ export default function Sobre() {
     };
 
     return (
-        <div className="w-screen min-h-screen grid grid-rows-1 grid-cols-3 max-md:grid-rows-3 max-md:grid-cols-1">
-            <section className="flex items-center flex-col w-full">
+        <div className="w-screen min-h-screen grid grid-rows-1 grid-cols-3 max-md:grid-rows-3 max-md:grid-cols-1 pt-[70px] max-md:pt-2">
+            <section className="flex items-center flex-col w-full  ">
                 <div className="bg-yellow p-3 rounded w-fit mt-[4rem]">
                     <h1 className=" text-4xl font-bold">
                         {translation.about.title}
@@ -30,7 +30,7 @@ export default function Sobre() {
                 </div>
                 <div className="w-full">
                     <h2 className="text-xl p-5 text-center">{translation.about.tools}</h2>
-                    <div className="bg-[#444444] border-2 border-yellow max-h-[27rem] p-5 ml-5 mr-5 rounded-md text-center list-none flex gap-2 flex-col text-lg font-thin">
+                    <div className="bg-[#111111] border-2 border-yellow max-h-[27rem] p-5 ml-5 mr-5 rounded-2xl text-center list-none flex gap-2 flex-col text-lg font-thin">
                         {tools.map((i, index) => (
                             <li key={index}>{i}</li>
                         ))}
@@ -38,7 +38,7 @@ export default function Sobre() {
                 </div>
             </section>
             <section className="w-full flex flex-col items-center p-5">
-                <div className="bg-[#333333] rounded-md border-2 border-yellow w-full h-full p-5 text-center">
+                <div className="bg-[#111111] rounded-2xl border-2 border-yellow w-full h-full p-5 text-center">
 
                     <h2 className="font-bold text-lg p-2 text-yellow">{translation.about.text.title}</h2>
                     <ul className="list-disc list-inside flex flex-col gap-2">

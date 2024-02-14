@@ -17,8 +17,8 @@ export default function ExploreMenu({sort, setSort, search, setSearch,  genre, s
 
     const {translation} = useContext(Context)
   return (
-    <aside className="fixed  bg-yellow w-[36vh] h-[90vh] mt-[9.5vh] items-center gap-3 flex flex-col
-    max-md:w-[20vh]
+    <aside className="fixed  bg-yellow w-[36vh] h-[100vh] pt-[15vh] items-center gap-3 flex flex-col
+    max-md:w-[20vh] max-md:pt-[8vh]
     ">
       <input
         className="bg-white text-black text-xl h-[3.5rem] w-[14rem] rounded mt-2 

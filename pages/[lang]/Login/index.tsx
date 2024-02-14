@@ -78,7 +78,7 @@ export default function Login() {
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="../../favicon.ico" />
             </Head>
-            <main className={'w-screen h-screen bg-cover'}
+            <main className={'w-screen h-screen bg-cover '}
                 style={{
                     backgroundImage: bgBanner,
                     transition: "background-image 1000ms ease-in-out",
@@ -102,7 +102,7 @@ export default function Login() {
                         />
                     </Switch>
                     <Image src={Icon} width={0} height={0} alt="Icon" style={{ width: 350, height: 'auto' }} />
-                    <div className="bg-[#333333] rounded-2xl p-10 flex flex-col items-center gap-5 border-2 border-[#222222]
+                    <div className="bg-black rounded-2xl p-10 flex flex-col items-center gap-5 border-2 border-[#111111]
                 transition-all hover:border-yellow duration-500 
             ">
                         <h1 className="font-bold text-4xl">{translation.login.login}</h1>

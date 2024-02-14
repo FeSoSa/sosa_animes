@@ -22,13 +22,13 @@ export default function Conta() {
     return (
         <>
             {!loading && user &&
-                <main className="w-screen min-h-screen">
+                <main className="w-screen min-h-screen pt-[70px] max-md:pt-2">
                     <div className="flex justify-center items-center flex-col gap-3">
                         <div>
                             <Image src={user.photoURL!} alt="User Photo" width={150} height={150} className="m-5 rounded-[50%] outline outline-white" />
                             <h1 className="text-2xl font-bold uppercase">{user.displayName}</h1>
                         </div>
-                        <section className="w-full min-h-[65vh] bg-[#333333] text-center pt-2">
+                        <section className="w-full min-h-[70vh] bg-[#111111] text-center pt-2">
                             <ExitButton/>
                         </section>
                     </div>

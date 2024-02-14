@@ -1,7 +1,7 @@
 import React from "react";
 
 interface Props {
-    children: React.ReactNode,
+    children?: React.ReactNode,
     color: string,
     text: string,
     name?:string
@@ -13,13 +13,13 @@ export default function ItemNav({ children, name, color, text }: Props) {
             className={`
             flex
             justify-center
-            flex-col
+            max-md:flex-col
             text-center
             items-center
-            bg-${color} 
+            bg-${color}
             text-${text} 
             rounded 
-            p-2
+            max-md:p-2
             w-[6rem]
             font-bold
             border-black

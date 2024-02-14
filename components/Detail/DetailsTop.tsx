@@ -52,7 +52,7 @@ export default function DetailsTop({ Anime }: Props) {
   }, [user, clickFavorite]);
 
   return (
-    <main className="p-10 bg-black bg-opacity-75">
+    <main className="p-5 px-10 bg-black bg-opacity-75">
       <span></span>
       <section className="flex flex-row max-md:flex-col">
         <div className="w-[50%] border-r-2 border-yellow flex flex-col gap-2

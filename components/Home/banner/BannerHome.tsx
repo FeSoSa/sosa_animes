@@ -63,9 +63,7 @@ export default function BannerHome({ Banner }: Props) {
             </div>
           </div>
         </div>
-        <Image src={Icon} width={0} height={0} alt="Icon SosaAnime"
-        className="absolute top-0 z-99 right-0 m-2 w-[75px] max-md:w-[50px]"
-        />
+
       </header>
     </>
   );

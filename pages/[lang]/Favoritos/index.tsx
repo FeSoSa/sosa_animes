@@ -36,9 +36,9 @@ export default function Favoritos() {
     }, [user, favorite]);
 
     return (
-        <main className="bg-[#222222]">
-            <header className="text-[2rem] h-[5rem] w-screen flex justify-center items-center  text-yellow border-b border-yellow">
-                <BsFillLightningChargeFill /><h2>{translation.geral.favorites}</h2>
+        <main className="bg-black ">
+            <header className="text-[2rem]  w-screen flex justify-center items-center text-yellow border-b border-yellow0 pt-[70px] max-md:pt-2">
+                <h2>{translation.geral.favorites}</h2>
             </header>
             <div className="w-screen h-screen">
                 <div className="flex justify-center p-5 gap-7  flex-wrap">

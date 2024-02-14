@@ -8,5 +8,7 @@ export const colors= {
     dark_purple:'#20033A',
     gray:'#EAF6FF',
     dark_gray:'#5A5A5A',
-    yellow:'#FFA400'
+    yellow:'#FFA400',
+
+    primary_background:'#000'
 }

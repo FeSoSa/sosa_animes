@@ -22,7 +22,7 @@ export default function NextPage({maxPages}:Props) {
     const {language} = useContext(Context)
 
     return (
-        <div className="flex flex-row p-5 gap-5 items-center">
+        <div className="flex flex-row p-4 gap-5 items-center">
             <div
                 className="cursor-pointer text-[2rem] text-yellow"
                 onMouseOver={() => setLeftHandle(true)} onMouseOut={() => setLeftHandle(false)}

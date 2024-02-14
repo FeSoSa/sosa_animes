@@ -16,8 +16,8 @@ export default function Categorias() {
   const {translation} = useContext(Context)
 
   return (
-    <main className="bg-background w-screen min-h-screen flex flex-col">
-      <header className="fixed z-10 bg-black w-screen h-[4rem] flex justify-between items-center border-b-2 border-yellow text-2xl">
+    <main className="bg-background w-screen min-h-screen flex flex-col ">
+      <header className="fixed z-10 bg-black w-screen flex justify-between items-center border-b-2 border-yellow text-2xl pt-[60px] max-md:pt-0">
        
         <div className="w-[157.48px]"/>
         <div>{type ? type.toUpperCase() : type}</div>
