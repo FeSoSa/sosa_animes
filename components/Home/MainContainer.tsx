@@ -32,13 +32,13 @@ export default function MainContainer({
     const thirdRand = thirdArray[Math.floor(Math.random() * thirdArray.length)];
     setRand3(thirdRand[1])
     setItemRand3(thirdRand[0][Math.floor(Math.random() * thirdRand[0].length)])
-  }, [])
+  }, [Animes])
 
-  console.log(Animes)
+
   return (
     <main>
       <BannerHome Banner={Banner} />
-      <div className="mt-[-110px]">
+      <div className="mt-[-110px] max-md:mt-[-250px]">
         <RowAnime items={Animes[0][0]} key={Animes[0][1]} title={Animes[0][1]} style={"G"} /> {/* Em Destaque */}
         <div className="flex justify-center p-5">
           <Highlight anime={itemRand1} title="Recomendados" />
