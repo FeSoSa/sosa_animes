@@ -38,7 +38,7 @@ Sua contribuição é mais que bem-vinda! Se você é um entusiasta de Animes ou
 6. Acesse o aplicativo em `http://localhost:3000`.
 
 ## Sobre o Autor
-Olá! Meu nome é [Seu Nome], sou apaixonado por Animes e desenvolvimento web. O Sosa Animes foi criado como um projeto pessoal de aprendizado e paixão. Espero que você se divirta navegando no Sosa Animes tanto quanto eu me diverti construindo-o. Caso queira me contatar ou saber mais sobre meus projetos, não hesite em me encontrar no LinkedIn ou em meu site pessoal.
+Olá! Meu nome é Felipe, sou apaixonado por Animes e desenvolvimento web. O Sosa Animes foi criado como um projeto pessoal de aprendizado e paixão. Espero que você se divirta navegando no Sosa Animes tanto quanto eu me diverti construindo-o. Caso queira me contatar ou saber mais sobre meus projetos, não hesite em me encontrar no LinkedIn ou em meu site pessoal.
 
 ---
 
