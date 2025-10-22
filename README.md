@@ -1,6 +1,7 @@
 # Sosa Animes - Seu Guia Definitivo de Animes! 🌟🎬
 
-<img src="Tela.png" alt="Tela do Sosa Animes"/>
+![sosaAnime](https://github.com/FeSoSa/sosa_animes/assets/89049285/1d83e27b-39dd-4080-8a0d-736f8fcc3f4b)
+![sosaAnime2](https://github.com/FeSoSa/sosa_animes/assets/89049285/ccb32aa8-4700-444f-b565-b6a8c73d6a29)
 
 Vamos juntos explorar o fascinante mundo dos Animes? Acesse agora mesmo o Sosa Animes e viva emoções que vão além da imaginação! [[clique aqui](https://sosa-movie.vercel.app)]
 
@@ -37,7 +38,7 @@ Sua contribuição é mais que bem-vinda! Se você é um entusiasta de Animes ou
 6. Acesse o aplicativo em `http://localhost:3000`.
 
 ## Sobre o Autor
-Olá! Meu nome é [Seu Nome], sou apaixonado por Animes e desenvolvimento web. O Sosa Animes foi criado como um projeto pessoal de aprendizado e paixão. Espero que você se divirta navegando no Sosa Animes tanto quanto eu me diverti construindo-o. Caso queira me contatar ou saber mais sobre meus projetos, não hesite em me encontrar no LinkedIn ou em meu site pessoal.
+Olá! Meu nome é Felipe, sou apaixonado por Animes e desenvolvimento web. O Sosa Animes foi criado como um projeto pessoal de aprendizado e paixão. Espero que você se divirta navegando no Sosa Animes tanto quanto eu me diverti construindo-o. Caso queira me contatar ou saber mais sobre meus projetos, não hesite em me encontrar no LinkedIn ou em meu site pessoal.
 
 ---
 
