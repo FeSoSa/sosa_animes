@@ -9,10 +9,10 @@ import Image from "next/image.js";
 import Icon from '../../../public/assets/AnimeIcon.png'
 
 interface Props {
-  Banner: IAnimes[];
+  banner: IAnimes[];
 }
 
-export default function BannerHome({ Banner }: Props) {
+export default function BannerHome({ banner }: Props) {
   // Estado para armazenar o destaque do banner
   const [destaque, setDestaque] = useState<string>();
   // Estado para armazenar as informações do anime em destaque
@@ -23,7 +23,7 @@ export default function BannerHome({ Banner }: Props) {
   useEffect(() => {
     // Função para gerar um número aleatório para o índice do banner
     function random() {
-      const random = Math.random() * Banner.length;
+      const random = Math.random() * banner.length;
       const rand = Math.floor(random);
       return rand;
     }
@@ -31,8 +31,8 @@ export default function BannerHome({ Banner }: Props) {
     if (!selectedAnime) {
       // Se não houver anime selecionado, escolhe um aleatório do banner
       const rand = random();
-      setDestaque(`url(${banner}${Banner[rand].backdrop_path})`);
-      setInfo(Banner[rand]);
+      setDestaque(`url(${banner}${banner[rand].backdrop_path})`);
+      setInfo(banner[rand]);
     } else {
       if (!selectedAnime.backdrop_path) {
         // Se o anime selecionado não tiver um backdrop_path, utiliza a imagem NotFound
@@ -44,7 +44,7 @@ export default function BannerHome({ Banner }: Props) {
         setInfo(selectedAnime);
       }
     }
-  }, [Banner, selectedAnime, setSelectedAnime]);
+  }, [banner, selectedAnime, setSelectedAnime]);
 
   return (
     <>

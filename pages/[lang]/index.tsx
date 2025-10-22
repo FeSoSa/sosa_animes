@@ -1,15 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import { IAnimes, IComponent } from "../../typing.d.ts";
-import { GetServerSideProps } from "next";
-import MainContainer from "../../components/Home/MainContainer";
-import Head from "next/head";
 import axios from "axios";
+import { GetServerSideProps } from "next";
+import Head from "next/head";
+import { useContext, useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../../db/firebaseConfig";
+import MainContainer from "../../components/Home/MainContainer";
 import Loading from "../../components/Loading/Loading";
-import { useRouter } from "next/router.js";
-import { Context } from "../../contexts/ContextProvider";
 import { BRrequests, ENGrequests } from "../../constants/requests";
+import { Context } from "../../contexts/ContextProvider";
+import { auth } from "../../db/firebaseConfig";
+import { IAnimes, IComponent } from "../../typing.d.ts";
 
 interface Props {
   PopularAnime: IAnimes[];
@@ -28,7 +27,7 @@ const Home = ({
   ComedyAnime,
   FictionAnime,
   MisteryAnime,
-  MovieAnime
+  MovieAnime,
 }: Props) => {
   const { language, setLanguage, translation } = useContext(Context);
   const [user, loading] = useAuthState(auth);
@@ -47,8 +46,7 @@ const Home = ({
     // Function to fetch data based on the current language
     const fetchData = async () => {
       try {
-        const requests =
-          language === "pt-br" ? BRrequests : ENGrequests;
+        const requests = language === "pt-br" ? BRrequests : ENGrequests;
 
         const [
           PopularAnime,
@@ -97,22 +95,19 @@ const Home = ({
     [animesData.MovieAnime, translation.genres.movies],
   ];
 
-
   return (
     <>
       <Head>
         <title>SoSaAnime</title>
-        <meta
-          name="description"
-          content="SoSaAnime"
-        />
+        <meta name="description" content="SoSaAnime" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      {loading&&!user || !loading&&!user || loading&&user
-        ?<Loading/>
-        :<MainContainer Animes={Animes} Banner={PopularAnime} />
-      }
+      {(loading && !user) || (!loading && !user) || (loading && user) ? (
+        <Loading />
+      ) : (
+        <MainContainer animes={Animes} banner={PopularAnime} />
+      )}
     </>
   );
 };
@@ -127,7 +122,7 @@ export const getServerSideProps: GetServerSideProps = async (content) => {
     ComedyAnime,
     FictionAnime,
     MisteryAnime,
-    MovieAnime
+    MovieAnime,
   ] = await Promise.all([
     axios.get(BRrequests.fetchAll).then((res) => res.data),
     axios.get(BRrequests.fetchAction).then((res) => res.data),
@@ -135,7 +130,7 @@ export const getServerSideProps: GetServerSideProps = async (content) => {
     axios.get(BRrequests.fetchComedy).then((res) => res.data),
     axios.get(BRrequests.fetchFiction).then((res) => res.data),
     axios.get(BRrequests.fetchMistery).then((res) => res.data),
-    axios.get(BRrequests.fetchMovies).then((res) => res.data)
+    axios.get(BRrequests.fetchMovies).then((res) => res.data),
   ]);
 
   return {
@@ -146,7 +141,7 @@ export const getServerSideProps: GetServerSideProps = async (content) => {
       ComedyAnime: ComedyAnime.results,
       FictionAnime: FictionAnime.results,
       MisteryAnime: MisteryAnime.results,
-      MovieAnime: MovieAnime.results
-    }
+      MovieAnime: MovieAnime.results,
+    },
   };
 };
