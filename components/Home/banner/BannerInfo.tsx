@@ -31,6 +31,10 @@ export default function BannerInfo({ Anime }: Props) {
     getFavorites();
   }, [user, clickFavorite]);
 
+  if (!Anime) {
+    return <></>;
+  }
+
   return (
     <section>
       <div
@@ -76,13 +80,13 @@ export default function BannerInfo({ Anime }: Props) {
                 max-md:w-[350px] max-md:text-center max-md:h-[170px] max-md:mb-[15px]
                 "
         >
-          {Anime.overview.length > 300
-            ? Anime.overview.slice(0, 300) + "..."
-            : Anime.overview}
+          {Anime?.overview.length > 300
+            ? Anime?.overview.slice(0, 300) + "..."
+            : Anime?.overview}
         </div>
         <div className="flex gap-5 max-md:gap-3 max-md:justify-center items-center">
           <div>
-            <ModalButton TrailerID={Anime.id} color="yellow" text="white">
+            <ModalButton TrailerID={Anime?.id} color="yellow" text="white">
               {translation.geral.trailer}
             </ModalButton>
           </div>
