@@ -1,18 +1,15 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { Context } from "../../../contexts/ContextProvider";
+import NotFound from "../../../public/assets/NotFound.png";
 import { AnimeEmpty, IAnimes } from "../../../typing.d.ts";
 import { banner } from "../../../utils/apiVariables";
-import NotFound from "../../../public/assets/NotFound.png";
-import { Context } from "../../../contexts/ContextProvider";
 import BannerInfo from "./BannerInfo";
-import Image from "next/image.js";
-
-import Icon from '../../../public/assets/AnimeIcon.png'
 
 interface Props {
-  banner: IAnimes[];
+  banners: IAnimes[];
 }
 
-export default function BannerHome({ banner }: Props) {
+export default function BannerHome({ banners }: Props) {
   // Estado para armazenar o destaque do banner
   const [destaque, setDestaque] = useState<string>();
   // Estado para armazenar as informações do anime em destaque
@@ -31,8 +28,8 @@ export default function BannerHome({ banner }: Props) {
     if (!selectedAnime) {
       // Se não houver anime selecionado, escolhe um aleatório do banner
       const rand = random();
-      setDestaque(`url(${banner}${banner[rand].backdrop_path})`);
-      setInfo(banner[rand]);
+      setDestaque(`url(${banner}${banners[rand].backdrop_path})`);
+      setInfo(banners[rand]);
     } else {
       if (!selectedAnime.backdrop_path) {
         // Se o anime selecionado não tiver um backdrop_path, utiliza a imagem NotFound
@@ -63,7 +60,6 @@ export default function BannerHome({ banner }: Props) {
             </div>
           </div>
         </div>
-
       </header>
     </>
   );

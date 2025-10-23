@@ -31,7 +31,7 @@ export default function MainContainer({ animes, banner }: Props) {
 
   return (
     <main>
-      <BannerHome banner={banner} />
+      <BannerHome banners={banner} />
       <div className="mt-[-110px] max-md:mt-[-250px]">
         <RowAnime
           items={animes[0][0]}
