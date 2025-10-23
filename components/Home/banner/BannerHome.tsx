@@ -24,11 +24,10 @@ export default function BannerHome({ banners }: Props) {
       const rand = Math.floor(random);
       return rand;
     }
-
     if (!selectedAnime) {
       // Se não houver anime selecionado, escolhe um aleatório do banner
       const rand = random();
-      setDestaque(`url(${banner}${banners[rand].backdrop_path})`);
+      setDestaque(`url(${banner}${banners[rand]?.backdrop_path})`);
       setInfo(banners[rand]);
     } else {
       if (!selectedAnime.backdrop_path) {
